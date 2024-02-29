@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hrm/flavours.dart';
+import 'package:hrm/start.dart';
 
 void main() {
-  runApp(const MyApp());
+  F.appFlavor = Flavor.DEV;
+  // runApp(const MyApp());
+  start();
 }
 
 class MyApp extends StatelessWidget {
