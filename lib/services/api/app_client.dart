@@ -27,7 +27,7 @@ class AppClient {
 
   void _setupClient() {
     dio = Dio(BaseOptions(
-        baseUrl: "https://defender.machinax.net",
+        baseUrl: "",
         receiveTimeout: 60 * 1000 * 2,
         connectTimeout: 60 * 1000 * 2,
         contentType: "application/json"));
