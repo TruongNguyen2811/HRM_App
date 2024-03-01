@@ -39,8 +39,8 @@ sosLinnearGradientDarkBlue() {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      Color.fromARGB(255, 58, 70, 243),
-      Color.fromARGB(255, 1, 9, 128),
+      AppColors.primaryColor2,
+      AppColors.primaryColor,
     ],
   );
 }
@@ -50,8 +50,8 @@ sosLinnearGradientDarkBlue2() {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      Color.fromARGB(255, 1, 9, 128),
-      Color.fromARGB(255, 58, 70, 243),
+      AppColors.primaryColor,
+      AppColors.primaryColor2,
     ],
   );
 }

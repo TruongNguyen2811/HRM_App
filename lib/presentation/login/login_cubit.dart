@@ -1,21 +1,24 @@
 import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
-import 'package:hrm/injection_container.dart';
-import 'package:hrm/services/preferences/app_preference.dart';
+// import 'package:hrm/injection_container.dart';
+// import 'package:hrm/services/preferences/app_preference.dart';
 import 'package:hrm/services/repository/app_repository_impl.dart';
 import 'package:hrm/utils/string_extension.dart';
+// import 'package:hrm/utils/string_extension.dart';
 import 'package:hrm/utils/utils.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final AppRepository repository;
-  final AppPreferences _pref = getIt<AppPreferences>();
+  // final AppPreferences _pref = getIt<AppPreferences>();
 
   LoginCubit({required this.repository}) : super(LoginInitial());
   bool isErrorEnable = false;
   String? contentError;
+  bool isErrorPasswordEnable = false;
+  String? contentPasswordError;
 
   checkFocus(String? value) {
     if (!Utils.isEmpty(value)) {
@@ -24,23 +27,28 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  checkUpdatePassword(String phoneNumber) async {
+  checkUpdatePassword(String phoneNumber, String password) async {
     emit(LoginLoading());
-    // if (Utils.isEmpty(phoneNumber)) {
-    //   contentError = 'Bạn cần nhập số điện thoại';
-    //   isErrorEnable = true;
-    //   emit(LoginInitial());
-    //   return;
-    // }
-    // if (!phoneNumber.isPhoneNoValid()) {
-    //   contentError = 'Bạn cần nhập số điện thoại đúng định dạng';
-    //   isErrorEnable = true;
-    //   emit(LoginInitial());
-    //   return;
-    // }
-    // else {
-    emit(LoginPhoneNotUpdatePassword());
-    // }
+    if (Utils.isEmpty(phoneNumber)) {
+      contentError = 'Bạn cần nhập số điện thoại';
+      isErrorEnable = true;
+      emit(LoginInitial());
+      return;
+    }
+    if (!phoneNumber.isPhoneNoValid()) {
+      contentError = 'Bạn cần nhập số điện thoại đúng định dạng';
+      isErrorEnable = true;
+      emit(LoginInitial());
+      return;
+    }
+    if (Utils.isEmpty(password)) {
+      contentPasswordError = 'Bạn cần nhập mật khẩu';
+      isErrorPasswordEnable = true;
+      emit(LoginInitial());
+      return;
+    } else {
+      emit(LoginPhoneNotUpdatePassword());
+    }
 
     // final ApiResult<bool?> apiResult =
     //     await repository.isUpdatePassword(userName: phoneNumber);

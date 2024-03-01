@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
+import 'package:hrm/utils/custom_gradient.dart';
 import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/utils/navigation_utils.dart';
 import 'package:hrm/widget/single_tap.dart';
@@ -34,11 +35,13 @@ class NewAppBarWidget extends StatelessWidget {
             right: 16.w,
             bottom: 12.h,
           ),
-      color: AppColors.primaryColor,
 
-      // decoration: const BoxDecoration(
-      //   color: AppColors.primaryColor,
-      // ),
+      // color: AppColors.primaryColor,
+
+      decoration: BoxDecoration(
+        gradient: sosLinnearGradientDarkBlue2(),
+        // color: AppColors.primaryColor,
+      ),
       child: (widgetCustom != null)
           ? widgetCustom!
           : Row(
