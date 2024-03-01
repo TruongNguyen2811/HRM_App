@@ -46,7 +46,7 @@ class AppColors {
   static const greenAccent = Color(0xFFD1FAE5);
   static const green = Color(0xFF10B981);
   static const green2 = Color(0xFF24A09C);
-  static const primaryColor = Color(0xFF00065A);
+  static const primaryColor = Color.fromARGB(255, 1, 9, 128);
   static const blue1 = Color(0xFF212E4A);
   static const dark2 = Color(0xFF313131);
   static const natural1 = Color(0xFF1D1D1D);
