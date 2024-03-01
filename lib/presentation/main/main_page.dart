@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math' as math;
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,18 +7,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hrm/presentation/account/account_page.dart';
 import 'package:hrm/presentation/authentication/authentication_cubit.dart';
 import 'package:hrm/presentation/home/home_page.dart';
-import 'package:hrm/services/preferences/app_preference.dart';
 import 'package:hrm/utils/custom_gradient.dart';
 import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/widget/show_loading_widget.dart';
 import '../../app.dart';
 import '../../configuration/colors.dart';
-import '../../injection_container.dart';
 import '../../utils/enum.dart';
 import '../../utils/logger.dart';
-import '../../utils/navigation_utils.dart';
 import '../../utils/utils.dart';
 
 import 'main_cubit.dart';
@@ -39,7 +36,7 @@ class _MainPageState extends State<MainPage>
   // late HomeCubit _homeCubit;
   // late AccountCubit _accountCubit;
   final String localUserID = math.Random().nextInt(10000).toString();
-  final AppPreferences _pref = getIt<AppPreferences>();
+  // final AppPreferences _pref = getIt<AppPreferences>();
   int _currentIndex = 0;
   final PageController pageController = PageController();
 
@@ -171,7 +168,7 @@ class _MainPageState extends State<MainPage>
     return [
       const HomePage(),
       Container(),
-      Container(),
+      const AccountPage(),
     ];
   }
 

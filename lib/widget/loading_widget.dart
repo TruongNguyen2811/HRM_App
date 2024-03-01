@@ -21,8 +21,8 @@ class LoadingWidget extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: SpinKitPouringHourGlassRefined(
-            color: AppColors.white,
-            size: 80.h,
+            color: AppColors.primaryColor,
+            size: 60.h,
           ),
         ),
       ],

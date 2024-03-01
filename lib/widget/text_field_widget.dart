@@ -247,20 +247,20 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                                   bottom: 12.h,
                                   left: 10.w,
                                   right: widget.fillBackground ? 0.w : 16.w),
-                              // child: Image.asset(
-                              //   (!Utils.isEmpty(widget.controller.text) &&
-                              //           widget.onPressDelete != null)
-                              //       ? Assets.icons.icDeleteField.path
-                              //       : (widget.suffixIcon != null
-                              //           ? (widget.suffixIcon ??
-                              //               Assets.icons.icInvisibleEye.path)
-                              //           : _obscureText
-                              //               ? Assets.icons.icInvisibleEye.path
-                              //               : Assets.icons.icVisibleEye.path),
-                              //   height: 24.h,
-                              //   width: 24.h,
-                              //   color: widget.suffixColor,
-                              // ),
+                              child: Image.asset(
+                                (!Utils.isEmpty(widget.controller.text) &&
+                                        widget.onPressDelete != null)
+                                    ? 'assets/icon/close.png'
+                                    : (widget.suffixIcon != null
+                                        ? (widget.suffixIcon ??
+                                            'assets/icon/hidden.png')
+                                        : _obscureText
+                                            ? 'assets/icon/hidden.png'
+                                            : 'assets/icon/eye.png'),
+                                height: 24.h,
+                                width: 24.h,
+                                color: widget.suffixColor,
+                              ),
                             ),
                           )
                         : null),

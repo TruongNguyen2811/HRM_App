@@ -46,7 +46,7 @@ class AppColors {
   static const greenAccent = Color(0xFFD1FAE5);
   static const green = Color(0xFF10B981);
   static const green2 = Color(0xFF24A09C);
-  static const primaryColor = Color.fromARGB(255, 1, 9, 128);
+  static const primaryColor = Color(0xFF010980);
   static const blue1 = Color(0xFF212E4A);
   static const dark2 = Color(0xFF313131);
   static const natural1 = Color(0xFF1D1D1D);
@@ -90,7 +90,7 @@ class AppColors {
   static const footerColor = Color(0xFF25B3E8);
   static const greyText = Color(0xFFC2C3C0);
   static const secondaryLine = Color(0xFFCAE0FF);
-  static const primaryColor2 = Color(0xFF4355F5);
+  static const primaryColor2 = Color(0xFF3A46F3);
   static const primaryColor3 = Color(0xFFDA00FF);
   static const primaryColor4 = Color(0xFF6574FF);
   static const primaryColor5 = Color(0xFFE7F1FF);

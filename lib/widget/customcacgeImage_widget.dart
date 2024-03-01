@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
-import 'package:hrm/injection_container.dart';
-import 'package:hrm/services/preferences/app_preference.dart';
+// import 'package:hrm/injection_container.dart';
+// import 'package:hrm/services/preferences/app_preference.dart';
 import 'package:hrm/widget/shimmer_widget.dart';
 import 'package:hrm/widget/single_tap.dart';
 
 class CustomCacheImageWidget extends StatelessWidget {
-  final AppPreferences _pref = getIt<AppPreferences>();
+  // final AppPreferences _pref = getIt<AppPreferences>();
   final String? imageUrl;
   final double size;
   final double? height;
@@ -109,7 +109,7 @@ class CustomCacheImageWidget extends StatelessWidget {
                 // ),
                 errorWidget: (context, url, _) => Image.asset(
                   placeHolder ?? 'assets/icon/ic_no-pictures.png',
-                  fit: fit ?? BoxFit.contain,
+                  fit: fit ?? BoxFit.cover,
                   width: 40.w,
                   height: 30.h,
                 ),
