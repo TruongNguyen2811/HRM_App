@@ -5,6 +5,8 @@ import 'package:get_it/get_it.dart';
 import 'package:hrm/main.dart';
 import 'package:hrm/presentation/authentication/authentication_state.dart';
 import 'package:hrm/presentation/home/home_page.dart';
+import 'package:hrm/presentation/login/login_page.dart';
+import 'package:hrm/presentation/splash/splash_page.dart';
 import 'package:hrm/start.dart';
 import 'package:hrm/utils/enum.dart';
 import 'package:hrm/utils/logger.dart';
@@ -110,16 +112,16 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             builder: (context, state) {
               // return const HomePage();
               if (state is AuthenticationUninitialized) {
-                return const HomePage();
+                return const SplashPage();
                 // SPLASH
               }
               if (state is AuthenticationUnauthenticated) {
-                return const MyHomePage(title: 'Flutter Demo Home Page');
+                return const LoginPage();
               }
               if (state is AuthenticationAuthenticated) {
                 return const MyHomePage(title: 'Flutter Demo Home Page');
               }
-              return const MyHomePage(title: 'Flutter Demo Home Page');
+              return const LoginPage();
             },
           ),
           create: (context) => _authenticationCubit,
