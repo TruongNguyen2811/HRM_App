@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
 import 'package:hrm/presentation/main/main_page.dart';
 import 'package:hrm/services/repository/app_repository_impl.dart';
+import 'package:hrm/utils/custom_gradient.dart';
 import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/utils/navigation_utils.dart';
 import 'package:hrm/utils/utils.dart';
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
               Utils.showToast(context, state.messageError);
             }
             if (state is LoginPhoneNotUpdatePassword) {
-              NavigationUtils.navigatePage(
+              NavigationUtils.replacePage(
                 context,
                 const MainPage(),
               );
@@ -231,6 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                   // width: double.infinity,
                   radius: 32.r,
                   title: 'Đăng nhập',
+                  // gradient: sosLinnearGradientDarkBlue(),
                   backgroundColor: AppColors.primaryColor,
                   textColor: AppColors.white,
                   disableTextColor: AppColors.dark7,

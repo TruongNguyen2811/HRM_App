@@ -9,7 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hrm/presentation/authentication/authentication_cubit.dart';
+import 'package:hrm/presentation/home/home_page.dart';
 import 'package:hrm/services/preferences/app_preference.dart';
+import 'package:hrm/utils/custom_gradient.dart';
 import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/widget/show_loading_widget.dart';
 import '../../app.dart';
@@ -39,6 +41,7 @@ class _MainPageState extends State<MainPage>
   final String localUserID = math.Random().nextInt(10000).toString();
   final AppPreferences _pref = getIt<AppPreferences>();
   int _currentIndex = 0;
+  final PageController pageController = PageController();
 
   @override
   void initState() {
@@ -104,69 +107,71 @@ class _MainPageState extends State<MainPage>
     return ShowLoadingWidget(
         isLoading: state is MainLoading,
         child: Scaffold(
-          bottomNavigationBar: CircleNavBar(
-            activeIndex: _currentIndex,
-            activeIcons: const [
-              Icon(Icons.home_filled, color: AppColors.white),
-              Icon(Icons.dashboard_sharp, color: AppColors.white),
-              Icon(Icons.account_circle_sharp, color: AppColors.white),
-            ],
-            inactiveIcons: [
-              Text(
-                "Trang chủ",
-                style: Theme.of(context).textTheme.tooltip.copyWith(
-                    color: AppColors.dark7, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                "Tiện ích",
-                style: Theme.of(context).textTheme.tooltip.copyWith(
-                    color: AppColors.dark7, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                "Tài khoản",
-                style: Theme.of(context).textTheme.tooltip.copyWith(
-                    color: AppColors.dark7, fontWeight: FontWeight.w500),
-              ),
-            ],
-            color: Colors.white,
-            circleColor: Colors.white,
-            height: 60.h,
-            circleWidth: 60.h,
-            onTap: ((index) {
-              _currentIndex = index;
-              _cubit.selectTab(index);
-            }),
-            // tabCurve: ,
-            // padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
-            cornerRadius: BorderRadius.only(
-              topLeft: Radius.circular(16.r),
-              topRight: Radius.circular(16.r),
-              // bottomRight: Radius.circular(24),
-              // bottomLeft: Radius.circular(24),
-            ),
-            shadowColor: AppColors.shadowColor,
-            circleShadowColor: AppColors.shadowColor,
-            elevation: 4,
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [AppColors.white, AppColors.white],
-            ),
-            circleGradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Color.fromARGB(255, 29, 40, 65), AppColors.primaryColor],
-            ),
+          backgroundColor: AppColors.newBackgroundColor,
+          body: PageView(
+            controller: pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: _buildScreens(),
           ),
+          bottomNavigationBar: CircleNavBar(
+              activeIndex: _currentIndex,
+              activeIcons: const [
+                Icon(Icons.home_filled, color: AppColors.white),
+                Icon(Icons.dashboard_sharp, color: AppColors.white),
+                Icon(Icons.account_circle_sharp, color: AppColors.white),
+              ],
+              inactiveIcons: [
+                Text(
+                  "Trang chủ",
+                  style: Theme.of(context).textTheme.text14W500.copyWith(
+                      color: AppColors.dark7, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  "Tiện ích",
+                  style: Theme.of(context).textTheme.text14W500.copyWith(
+                      color: AppColors.dark7, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  "Tài khoản",
+                  style: Theme.of(context).textTheme.text14W500.copyWith(
+                      color: AppColors.dark7, fontWeight: FontWeight.w500),
+                ),
+              ],
+              color: Colors.white,
+              circleColor: Colors.white,
+              height: 60.h,
+              circleWidth: 60.h,
+              onTap: ((index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+                pageController.jumpToPage(index);
+              }),
+              // tabCurve: ,
+              // padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
+              cornerRadius: BorderRadius.only(
+                topLeft: Radius.circular(16.r),
+                topRight: Radius.circular(16.r),
+                // bottomRight: Radius.circular(24),
+                // bottomLeft: Radius.circular(24),
+              ),
+              shadowColor: AppColors.shadowColor,
+              circleShadowColor: AppColors.shadowColor,
+              elevation: 4,
+              gradient: const LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [AppColors.white, AppColors.white],
+              ),
+              circleGradient: sosLinnearGradientDarkBlue()),
         ));
   }
 
   List<Widget> _buildScreens() {
     return [
-      // HomePage(),
-      // DiscoveryPage(),
-      // JobPage(),
-      // AccountPage(),
+      const HomePage(),
+      Container(),
+      Container(),
     ];
   }
 
