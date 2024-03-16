@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     _cubit = HomeCubit();
+    _cubit.getData();
   }
 
   @override
@@ -113,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Xin chào, Truong Nguyen!',
+                                'Xin chào, ${_cubit.profileAuthResponse.display_name ?? ''}!',
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelDark16
@@ -122,12 +123,19 @@ class _HomePageState extends State<HomePage> {
                                         fontWeight: FontWeight.w500),
                               ),
                               4.verticalSpace,
-                              Text(
-                                'Mobile Developer',
-                                style:
-                                    Theme.of(context).textTheme.text14.copyWith(
-                                          color: AppColors.white,
-                                        ),
+                              Container(
+                                width: 280.w,
+                                child: Text(
+                                  '${_cubit.profileAuthResponse.company_name}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .text14
+                                      .copyWith(
+                                        color: AppColors.white,
+                                      ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ],
                           )

@@ -6,6 +6,7 @@ import 'package:hrm/main.dart';
 import 'package:hrm/presentation/authentication/authentication_state.dart';
 import 'package:hrm/presentation/home/home_page.dart';
 import 'package:hrm/presentation/login/login_page.dart';
+import 'package:hrm/presentation/main/main_page.dart';
 import 'package:hrm/presentation/splash/splash_page.dart';
 import 'package:hrm/start.dart';
 import 'package:hrm/utils/enum.dart';
@@ -53,6 +54,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             loadStyle: LoadStyle.HideAlways,
           ),
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: "HRM app",
             // navigatorKey: alice.getNavigatorKey(),
             theme: ThemeData(
@@ -119,7 +121,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 return const LoginPage();
               }
               if (state is AuthenticationAuthenticated) {
-                return const MyHomePage(title: 'Flutter Demo Home Page');
+                return const MainPage();
               }
               return const LoginPage();
             },

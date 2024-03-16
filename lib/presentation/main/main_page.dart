@@ -7,9 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hrm/presentation/account/account_cubit.dart';
 import 'package:hrm/presentation/account/account_page.dart';
 import 'package:hrm/presentation/authentication/authentication_cubit.dart';
+import 'package:hrm/presentation/home/home_cubit.dart';
 import 'package:hrm/presentation/home/home_page.dart';
+import 'package:hrm/presentation/utility/utility_page.dart';
 import 'package:hrm/utils/custom_gradient.dart';
 import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/widget/show_loading_widget.dart';
@@ -33,8 +36,8 @@ class _MainPageState extends State<MainPage>
     with RouteAware, WidgetsBindingObserver {
   late MainCubit _cubit;
   late AppCubit _authCubit;
-  // late HomeCubit _homeCubit;
-  // late AccountCubit _accountCubit;
+  late HomeCubit _homeCubit;
+  late AccountCubit _accountCubit;
   final String localUserID = math.Random().nextInt(10000).toString();
   // final AppPreferences _pref = getIt<AppPreferences>();
   int _currentIndex = 0;
@@ -45,8 +48,8 @@ class _MainPageState extends State<MainPage>
     super.initState();
     _authCubit = GetIt.I<AppCubit>();
     _cubit = GetIt.I<MainCubit>();
-    // _homeCubit = HomeCubit();
-    // _accountCubit = AccountCubit();
+    _homeCubit = HomeCubit();
+    _accountCubit = AccountCubit();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {});
   }
@@ -61,12 +64,12 @@ class _MainPageState extends State<MainPage>
           BlocProvider.value(
             value: _cubit,
           ),
-          // BlocProvider.value(
-          //   value: _homeCubit,
-          // ),
-          // BlocProvider(
-          //   create: (context) => _accountCubit,
-          // ),
+          BlocProvider.value(
+            value: _homeCubit,
+          ),
+          BlocProvider(
+            create: (context) => _accountCubit,
+          ),
         ],
         child: BlocConsumer<MainCubit, MainState>(
           listener: (context, state) async {
@@ -167,7 +170,7 @@ class _MainPageState extends State<MainPage>
   List<Widget> _buildScreens() {
     return [
       const HomePage(),
-      Container(),
+      const UtilityPage(),
       const AccountPage(),
     ];
   }
