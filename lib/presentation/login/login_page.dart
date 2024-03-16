@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
+import 'package:hrm/injection_container.dart';
+import 'package:hrm/presentation/authentication/authentication_cubit.dart';
 import 'package:hrm/presentation/main/main_page.dart';
 import 'package:hrm/services/repository/app_repository_impl.dart';
 import 'package:hrm/utils/custom_theme.dart';
@@ -53,20 +55,17 @@ class _LoginPageState extends State<LoginPage> {
               // ignore: use_build_context_synchronously
               Utils.showToast(context, state.messageError);
             }
-            if (state is LoginPhoneNotUpdatePassword) {
-              NavigationUtils.replacePage(
-                context,
-                const MainPage(),
-              );
+            if (state is LoginSuccess) {
+              getIt<AppCubit>().login();
             }
-            if (state is LoginPhoneIsUpdatePassword) {
-              // NavigationUtils.navigatePage(
-              //   context,
-              //   LoginNewPasswordPage(
-              //     numberPhone: _phoneNumberController.text,
-              //   ),
-              // );
-            }
+            // if (state is LoginPhoneIsUpdatePassword) {
+            //   // NavigationUtils.navigatePage(
+            //   //   context,
+            //   //   LoginNewPasswordPage(
+            //   //     numberPhone: _phoneNumberController.text,
+            //   //   ),
+            //   // );
+            // }
           },
           builder: (context, state) {
             return _buildBody(state);
@@ -202,13 +201,13 @@ class _LoginPageState extends State<LoginPage> {
             borderColor: AppColors.secondaryLine,
             borderFocusColor: AppColors.secondaryLine,
             borderErrorColor: AppColors.darkger1,
-            titleText: 'Số điện thoại',
-            maxLength: 10,
+            titleText: 'Tên đăng nhập',
+            // maxLength: 10,
             controller: _phoneNumberController,
-            keyboardType: TextInputType.phone,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            // keyboardType: TextInputType.phone,
+            // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             textInputAction: TextInputAction.done,
-            hintText: 'Nhập số điện thoại của bạn',
+            hintText: 'Nhập tên đăng nhập của bạn',
             titleSize: 16.sp,
             titleWeight: FontWeight.w700,
             onChanged: (value) {

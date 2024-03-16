@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
+import 'package:hrm/injection_container.dart';
+import 'package:hrm/presentation/account/account_cubit.dart';
+import 'package:hrm/presentation/account/account_state.dart';
 import 'package:hrm/presentation/account/widget/menu_account_widget.dart';
+import 'package:hrm/presentation/authentication/authentication_cubit.dart';
 import 'package:hrm/utils/custom_theme.dart';
+import 'package:hrm/utils/utils.dart';
 import 'package:hrm/widget/customcacgeImage_widget.dart';
 import 'package:hrm/widget/new_appbar_widget.dart';
 
@@ -15,12 +21,37 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  late AccountCubit _cubit;
+
   @override
-  Widget build(BuildContext context) {
-    return _buildPage();
+  void initState() {
+    // TODO: implement initState
+    _cubit = AccountCubit();
+    _cubit.getData();
+    super.initState();
   }
 
-  Widget _buildPage() {
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<AccountCubit, AccountState>(
+        bloc: _cubit,
+        listener: (context, state) {
+          if (state is AccountFailure) {
+            Utils.showToast(context, state.messageError);
+            return;
+          }
+          if (state is AccountLogOutSuccess) {
+            AppCubit authCubit = getIt<AppCubit>();
+            authCubit.logout();
+            // getIt<AppCubit>().logout();
+          }
+        },
+        builder: (BuildContext context, AccountState state) {
+          return _buildPage(context, state);
+        });
+  }
+
+  Widget _buildPage(BuildContext context, AccountState state) {
     return Scaffold(
       backgroundColor: AppColors.newBackgroundColor,
       body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -84,22 +115,26 @@ class _AccountPageState extends State<AccountPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 160.w,
                         child: Text(
-                          'Truong Nguyen',
+                          '${_cubit.profileAuthResponse.display_name}',
                           style: Theme.of(context)
                               .textTheme
                               .text17
                               .copyWith(color: AppColors.newPrimary),
                         ),
                       ),
-                      Text(
-                        '0963591488',
-                        style: Theme.of(context)
-                            .textTheme
-                            .label14
-                            .copyWith(color: AppColors.newPrimary),
+                      SizedBox(
+                        width: 160.w,
+                        child: Text(
+                          '${_cubit.profileAuthResponse.company_name}',
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .label14
+                              .copyWith(color: AppColors.newPrimary),
+                        ),
                       )
                     ],
                   ),
@@ -231,6 +266,7 @@ class _AccountPageState extends State<AccountPage> {
                   prefixIcon: 'assets/icon/logout.png',
                   title: 'Đăng xuất',
                   onTap: () {
+                    _cubit.logout();
                     // showAlertDialog(
                     //   context,
                     //   isWarning: true,

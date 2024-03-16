@@ -19,4 +19,4 @@ class LoginFailure extends LoginState {
   const LoginFailure({required this.messageError});
 }
 
-class LoginPhoneIsUpdatePassword extends LoginState {}
+class LoginSuccess extends LoginState {}

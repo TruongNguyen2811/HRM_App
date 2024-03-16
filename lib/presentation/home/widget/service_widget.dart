@@ -35,7 +35,7 @@ class _HomeMenuState extends State<HomeMenuWidget> {
                     iconW: 28.w,
                     iconColor: AppColors.white,
                     icon: 'assets/icon/ic_check-in.png',
-                    label: 'Phiếu khám',
+                    label: 'Chấm công',
                     bgColor: sosLinnearGradientDarkBlue(),
                     onCallBack: () {}),
               ),

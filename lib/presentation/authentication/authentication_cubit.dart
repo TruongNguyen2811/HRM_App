@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hrm/presentation/main/main_cubit.dart';
 import 'package:hrm/services/preferences/app_preference.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,8 +39,9 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void logout({String? errorMessage}) async {
+    print('go to logout');
     emit(AuthenticationLoading());
-    // getIt<MainCubit>().logout();
+    getIt<MainCubit>().logout();
 
     _pref.logout();
     emit(AuthenticationUnauthenticated(errorMessage: errorMessage));
