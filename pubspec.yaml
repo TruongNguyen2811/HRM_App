@@ -61,6 +61,8 @@ dependencies:
   lottie:
   cached_network_image: ^3.3.1
   smooth_page_indicator: ^1.1.0
+  calendar_date_picker2: ^0.5.5
+  flutter_keyboard_visibility: ^5.4.1
 
 flutter_launcher_icons:
   android: "launcher_icon"

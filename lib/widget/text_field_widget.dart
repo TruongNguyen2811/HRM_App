@@ -151,8 +151,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16.r),
                   borderSide: BorderSide(
-                      width: 1,
-                      color: widget.borderColor ?? const Color(0xFF4355F5)),
+                      width: 1, color: widget.borderColor ?? AppColors.dark9),
                 ),
                 disabledBorder: widget.fillBackground
                     ? null
@@ -161,7 +160,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                         borderSide: BorderSide(
                             width: 1,
                             color:
-                                widget.borderDisableColor ?? Color(0xFF4355F5)),
+                                widget.borderDisableColor ?? AppColors.dark9),
                       ),
                 enabledBorder: widget.fillBackground
                     ? null
@@ -169,8 +168,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                         borderRadius: BorderRadius.circular(16.r),
                         borderSide: BorderSide(
                             width: 1,
-                            color:
-                                widget.borderColor ?? const Color(0xFF4355F5)),
+                            color: widget.borderColor ?? AppColors.dark9),
                       ),
                 focusedBorder: widget.fillBackground
                     ? null
@@ -178,8 +176,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                         borderRadius: BorderRadius.circular(16.r),
                         borderSide: BorderSide(
                             width: 1,
-                            color:
-                                widget.borderFocusColor ?? Color(0xFF4355F5)),
+                            color: widget.borderFocusColor ?? AppColors.dark9),
                       ),
                 errorBorder: widget.fillBackground
                     ? null
@@ -187,8 +184,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                         borderRadius: BorderRadius.circular(16.r),
                         borderSide: BorderSide(
                             width: 1,
-                            color:
-                                widget.borderErrorColor ?? Color(0xFF4355F5)),
+                            color: widget.borderErrorColor ?? AppColors.dark9),
                       ),
                 focusedErrorBorder: widget.fillBackground
                     ? null
@@ -196,8 +192,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                         borderRadius: BorderRadius.circular(16.r),
                         borderSide: BorderSide(
                             width: 1,
-                            color:
-                                widget.borderErrorColor ?? Color(0xFF4355F5)),
+                            color: widget.borderErrorColor ?? AppColors.dark9),
                       ),
                 contentPadding: EdgeInsets.only(
                     left: widget.fillBackground ? 0.w : 16.w,

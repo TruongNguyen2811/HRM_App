@@ -77,7 +77,8 @@ class LoginCubit extends Cubit<LoginState> {
       },
       failure: (error) {
         emit(LoginFailure(
-            messageError: NetworkExceptions.getErrorMessage(error)));
+            messageError:
+                'Tài khoản hoặc mật khẩu không đúng, vui lòng kiểm tra lại'));
       },
     );
 

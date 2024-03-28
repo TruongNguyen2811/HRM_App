@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
 import 'package:hrm/injection_container.dart';
+import 'package:hrm/presentation/create_order/create_order_page.dart';
 import 'package:hrm/presentation/main/main_cubit.dart';
+import 'package:hrm/presentation/time_keeping/time_keeping_page.dart';
 import 'package:hrm/utils/custom_gradient.dart';
+import 'package:hrm/utils/navigation_utils.dart';
 import 'package:hrm/widget/button_service_widget.dart';
 
 class HomeMenuWidget extends StatefulWidget {
@@ -37,7 +40,9 @@ class _HomeMenuState extends State<HomeMenuWidget> {
                     icon: 'assets/icon/ic_check-in.png',
                     label: 'Chấm công',
                     bgColor: sosLinnearGradientDarkBlue(),
-                    onCallBack: () {}),
+                    onCallBack: () {
+                      NavigationUtils.navigatePage(context, TimeKeepingPage());
+                    }),
               ),
               Expanded(
                 child: ButtonServiceWidgetV2(
@@ -47,9 +52,11 @@ class _HomeMenuState extends State<HomeMenuWidget> {
                     iconW: 28.w,
                     iconColor: AppColors.white,
                     icon: 'assets/icon/ic_check-in.png',
-                    label: 'Phiếu khám',
+                    label: 'Tạo đơn',
                     bgColor: sosLinnearGradientDarkBlue(),
-                    onCallBack: () {}),
+                    onCallBack: () {
+                      NavigationUtils.navigatePage(context, CreateOrderPage());
+                    }),
               ),
               Expanded(
                 child: ButtonServiceWidgetV2(
