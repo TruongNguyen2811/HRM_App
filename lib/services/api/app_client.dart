@@ -67,9 +67,9 @@ class AppClient {
       bool isLoggedIn = pref.isLoggedIn;
       if (options.headers['Authorization'] != Consts.BASIC_AUTH) {
         if (isLoggedIn || !Utils.isEmpty(accessToken)) {
-          options.headers["Authorization"] = "Bearer $accessToken";
+          options.headers["access-token"] = "$accessToken";
           logger.i(accessToken);
-          dio.options.headers["Authorization"] = "Bearer $accessToken";
+          dio.options.headers["access-token"] = "$accessToken";
         }
       }
       return handler.next(options);

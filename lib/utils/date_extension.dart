@@ -11,6 +11,7 @@ enum AppDateFormat {
   dayMonthSpaceHourMinute('dd/MM HH:mm'),
   dayMonth('dd/MM'),
   dayMonthYearHourMinuteSecond('dd/MM/yyyy HH:mm:ss'),
+  yearMonthDayHourMinuteSecondSSS('yyyy-MM-dd HH:mm:ss'),
   dayMonthYearHourMinuteSecondMilliSecond('dd/MM/yyyy HH:mm:ss.SSS');
 
   const AppDateFormat(this.formatString);

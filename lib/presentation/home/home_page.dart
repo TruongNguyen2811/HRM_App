@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               4.verticalSpace,
                               Container(
-                                width: 280.w,
+                                width: 276.w,
                                 child: Text(
                                   '${_cubit.profileAuthResponse.company_name}',
                                   style: Theme.of(context)

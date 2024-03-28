@@ -45,6 +45,37 @@ class _AppApi implements AppApi {
     return value;
   }
 
+  @override
+  Future<BaseResponse<List<AttendanceResponse>?>> getAttendanceReport(
+      body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<List<AttendanceResponse>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'object/hr.apec.attendance.report/get_attendance_reportv3',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<List<AttendanceResponse>>.fromJson(
+      _result.data!,
+      (json) => (json as List<dynamic>)
+          .map<AttendanceResponse>(
+              (i) => AttendanceResponse.fromJson(i as Map<String, dynamic>))
+          .toList(),
+    );
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
