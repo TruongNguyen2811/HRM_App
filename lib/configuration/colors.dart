@@ -124,4 +124,11 @@ class AppColors {
   static const dangerColor = Color(0xFFFF0000);
   static const newPrimary = Color(0xFF2F2E2E);
   static const shadowColor = Color(0x19000000);
+  static const enableButton = Color(0xFFC2C3C0);
+  static const borderTextField = Color(0xFFEAEAEA);
+  static const dark300 = Color(0xFF9F9F9F);
+  static const neuturalText = Color(0xFF273243);
+  static const primary50 = Color(0xFFEDF7FF);
+  static const borderColor = Color(0x800a51e2);
+  static const primaryMain = Color(0xFF0A51E2);
 }

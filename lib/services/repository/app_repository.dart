@@ -25,7 +25,7 @@ abstract class BaseRepository {
             ? value.map((e) => MultipartFile.fromFileSync(e.path)).toList()
             : value is File
                 ? MultipartFile.fromFile(value.path)
-                : MultipartFile.fromString(jsonEncode(value),
+                : MultipartFile.fromString(value,
                     contentType: MediaType.parse('application/json'))));
     return FormData.fromMap(request);
   }

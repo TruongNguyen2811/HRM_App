@@ -191,76 +191,76 @@ class _AccountPageState extends State<AccountPage> {
                 borderRadius: BorderRadius.circular(16.r)),
             child: Column(
               children: [
-                MenuAccountWidget(
-                  prefixIcon: 'assets/icon/reset-password.png',
-                  title: 'Thay đổi mật khẩu',
-                  onTap: () {},
-                ),
-                MenuAccountWidget(
-                  prefixIcon: 'assets/icon/fingerprint.png',
-                  title: 'Đăng nhập nhanh',
-                  valueSwitch: true,
-                  onChangeSwitch: (value) {
-                    // _cubit.onAcceptBioAuth();
-                  },
-                  showArrow: false,
-                  showSwitch: true,
-                ),
-                MenuAccountWidget(
-                  prefixIcon: 'assets/icon/file.png',
-                  title: 'Điều khoản và chính sách',
-                  onTap: () {},
-                ),
-                MenuAccountWidget(
-                  prefixIcon: 'assets/icon/customer-support.png',
-                  title: 'Trung tâm hỗ trợ',
-                  onTap: () {},
-                ),
-                MenuAccountWidget(
-                  prefixIcon: 'assets/icon/delete-document.png',
-                  title: 'Xoá tài khoản',
-                  onTap: () {
-                    // Utils.verifyAuthFuncOnClick(context, onPressed: () {
-                    //   AppTracking.instance.trackButtonClick('Click_Delete_Account');
-                    //   showAlertDialog(context,
-                    //       icon: Image.asset(R.drawable.img_trash,
-                    //           width: 130.w, height: 130.h),
-                    //       textStyle: Theme.of(context)
-                    //           .textTheme
-                    //           .labelHighLight2
-                    //           .copyWith(color: AppColors.dangerColor),
-                    //       title: 'Xoá tài khoản',
-                    //       content: Container(
-                    //         padding: EdgeInsets.symmetric(
-                    //             horizontal: R.dimen.thirdPadding),
-                    //         child: SingleChildScrollView(
-                    //           child: Column(
-                    //             mainAxisSize: MainAxisSize.min,
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //              Text(
-                    //                       'Tài khoản bị xoá sẽ không thể khôi phục lại dữ liệu đã có. Vui lòng cân nhắc khi kỹ trước khi xoá.',
-                    //                       textAlign: TextAlign.center,
-                    //                       style: Theme.of(context).textTheme.text14W600,
-                    //                     ),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       isWarning: true,
-                    //       primaryButtonTitle: 'Tôi đồng ý xoá tài khoản',
-                    //       onPrimaryButtonTap: (context) {
+                // MenuAccountWidget(
+                //   prefixIcon: 'assets/icon/reset-password.png',
+                //   title: 'Thay đổi mật khẩu',
+                //   onTap: () {},
+                // ),
+                // MenuAccountWidget(
+                //   prefixIcon: 'assets/icon/fingerprint.png',
+                //   title: 'Đăng nhập nhanh',
+                //   valueSwitch: true,
+                //   onChangeSwitch: (value) {
+                //     // _cubit.onAcceptBioAuth();
+                //   },
+                //   showArrow: false,
+                //   showSwitch: true,
+                // ),
+                // MenuAccountWidget(
+                //   prefixIcon: 'assets/icon/file.png',
+                //   title: 'Điều khoản và chính sách',
+                //   onTap: () {},
+                // ),
+                // MenuAccountWidget(
+                //   prefixIcon: 'assets/icon/customer-support.png',
+                //   title: 'Trung tâm hỗ trợ',
+                //   onTap: () {},
+                // ),
+                // MenuAccountWidget(
+                //   prefixIcon: 'assets/icon/delete-document.png',
+                //   title: 'Xoá tài khoản',
+                //   onTap: () {
+                //     // Utils.verifyAuthFuncOnClick(context, onPressed: () {
+                //     //   AppTracking.instance.trackButtonClick('Click_Delete_Account');
+                //     //   showAlertDialog(context,
+                //     //       icon: Image.asset(R.drawable.img_trash,
+                //     //           width: 130.w, height: 130.h),
+                //     //       textStyle: Theme.of(context)
+                //     //           .textTheme
+                //     //           .labelHighLight2
+                //     //           .copyWith(color: AppColors.dangerColor),
+                //     //       title: 'Xoá tài khoản',
+                //     //       content: Container(
+                //     //         padding: EdgeInsets.symmetric(
+                //     //             horizontal: R.dimen.thirdPadding),
+                //     //         child: SingleChildScrollView(
+                //     //           child: Column(
+                //     //             mainAxisSize: MainAxisSize.min,
+                //     //             crossAxisAlignment: CrossAxisAlignment.start,
+                //     //             children: [
+                //     //              Text(
+                //     //                       'Tài khoản bị xoá sẽ không thể khôi phục lại dữ liệu đã có. Vui lòng cân nhắc khi kỹ trước khi xoá.',
+                //     //                       textAlign: TextAlign.center,
+                //     //                       style: Theme.of(context).textTheme.text14W600,
+                //     //                     ),
+                //     //             ],
+                //     //           ),
+                //     //         ),
+                //     //       ),
+                //     //       isWarning: true,
+                //     //       primaryButtonTitle: 'Tôi đồng ý xoá tài khoản',
+                //     //       onPrimaryButtonTap: (context) {
 
-                    //         NavigationUtils.popDialog(context);
-                    //       },
-                    //       secondaryButtonTitle: 'Huỷ',
-                    //       onSecondaryButtonTap: (_) {
-                    //         NavigationUtils.popDialog(context);
-                    //       });
-                    //   _cubit.refreshState();
-                    // });
-                  },
-                ),
+                //     //         NavigationUtils.popDialog(context);
+                //     //       },
+                //     //       secondaryButtonTitle: 'Huỷ',
+                //     //       onSecondaryButtonTap: (_) {
+                //     //         NavigationUtils.popDialog(context);
+                //     //       });
+                //     //   _cubit.refreshState();
+                //     // });
+                //   },
+                // ),
                 MenuAccountWidget(
                   showArrow: false,
                   prefixIcon: 'assets/icon/logout.png',

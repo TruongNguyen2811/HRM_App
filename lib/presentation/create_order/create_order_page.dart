@@ -167,30 +167,30 @@ class _CreateOrderState extends State<CreateOrderPage> {
                         controller: _cubit.toDate,
                         hintText: 'Chọn thời gian kết thúc',
                       ),
-                      8.verticalSpace,
-                      Row(
-                        children: [
-                          Text(
-                            'Tổng số giờ',
-                            style: Theme.of(context)
-                                .textTheme
-                                .text14W400
-                                .copyWith(color: AppColors.dark3),
-                          ),
-                          // Text(
-                          //   '*',
-                          //   style: Theme.of(context)
-                          //       .textTheme
-                          //       .text14W400
-                          //       .copyWith(color: AppColors.red),
-                          // ),
-                        ],
-                      ),
-                      8.verticalSpace,
-                      TextFieldWidget(
-                        controller: _cubit.totalHours,
-                        hintText: '0 giờ',
-                      ),
+                      // 8.verticalSpace,
+                      // Row(
+                      //   children: [
+                      //     Text(
+                      //       'Tổng số giờ',
+                      //       style: Theme.of(context)
+                      //           .textTheme
+                      //           .text14W400
+                      //           .copyWith(color: AppColors.dark3),
+                      //     ),
+                      //     // Text(
+                      //     //   '*',
+                      //     //   style: Theme.of(context)
+                      //     //       .textTheme
+                      //     //       .text14W400
+                      //     //       .copyWith(color: AppColors.red),
+                      //     // ),
+                      //   ],
+                      // ),
+                      // 8.verticalSpace,
+                      // TextFieldWidget(
+                      //   controller: _cubit.totalHours,
+                      //   hintText: '0 giờ',
+                      // ),
                       8.verticalSpace,
                       Row(
                         children: [
