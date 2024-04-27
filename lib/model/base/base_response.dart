@@ -9,11 +9,11 @@ class BaseResponse<T> {
   @JsonKey(name: 'id')
   dynamic id;
   @JsonKey(name: 'result')
-  T? result;
+  T result;
   @JsonKey(name: 'error')
   dynamic error;
 
-  BaseResponse({this.jsonrpc, this.id, this.result});
+  BaseResponse({this.jsonrpc, this.id, required this.result});
 
   factory BaseResponse.fromJson(
           Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
