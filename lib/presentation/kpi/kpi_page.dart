@@ -78,7 +78,7 @@ class _KpiPageState extends State<KpiPage> {
                     child: Row(
                       children: [
                         Text(
-                          'KPI tháng 3',
+                          'KPI tháng ${DateTime.now().month}',
                           style:
                               Theme.of(context).textTheme.text14W500.copyWith(),
                         ),

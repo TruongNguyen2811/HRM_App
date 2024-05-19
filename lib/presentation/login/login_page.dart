@@ -5,9 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
 import 'package:hrm/injection_container.dart';
 import 'package:hrm/presentation/authentication/authentication_cubit.dart';
+import 'package:hrm/presentation/login/widget/bio_widget.dart';
 import 'package:hrm/presentation/main/main_page.dart';
 import 'package:hrm/services/repository/app_repository_impl.dart';
 import 'package:hrm/utils/custom_theme.dart';
+import 'package:hrm/utils/enum.dart';
 import 'package:hrm/utils/navigation_utils.dart';
 import 'package:hrm/utils/utils.dart';
 import 'package:hrm/widget/button_widget.dart';
@@ -148,9 +150,9 @@ class _LoginPageState extends State<LoginPage> {
                             4.verticalSpace,
                             GestureDetector(
                               onTap: () {
-                                // Utils.launchURL(Utils.getTypeUrlLauncher(
-                                //     Consts.PHONE_DEFAULT,
-                                //     LaunchType.LAUNCH_TYPE_PHONE));
+                                Utils.launchURL(Utils.getTypeUrlLauncher(
+                                    '0963591488',
+                                    LaunchType.LAUNCH_TYPE_PHONE));
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -258,6 +260,16 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
+              if (_cubit.isBioMetrics == true) ...[
+                16.horizontalSpace,
+              ],
+              BioWidget(
+                onTap: () {
+                  _cubit.login();
+                },
+                enable: _cubit.isBioMetrics ?? false,
+                biometrics: _cubit.biometrics,
+              )
             ],
           ),
         ],

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hrm/model/response/auth_response.dart';
 import 'package:hrm/presentation/account/account_state.dart';
 import 'package:hrm/services/preferences/app_preference.dart';
+import 'package:hrm/utils/local_auth.dart';
 import '../../injection_container.dart';
 import '../../services/repository/app_repository_impl.dart';
 
@@ -23,5 +24,31 @@ class AccountCubit extends Cubit<AccountState> {
   logout() async {
     emit(AccountLoading());
     emit(AccountLogOutSuccess());
+  }
+
+  onCheckAuth() {
+    emit(AccountInitial());
+    checkBio = _pref.getBioConfig;
+    emit(GetBioSuccess());
+  }
+
+  bool checkBio = false;
+  onBioAuth() async {
+    if (checkBio == false) {
+      emit(AccountLoading());
+      final isAuth = await LocalAuthApi.authenticate();
+      if (isAuth) {
+        checkBio = true;
+        _pref.saveBioConfig(checkBio);
+        emit(AcceptBioSuccess());
+      } else {
+        emit(RequestBio());
+      }
+    } else if (checkBio == true) {
+      emit(AccountLoading());
+      checkBio = false;
+      _pref.saveBioConfig(checkBio);
+      emit(DenyBioSuccess());
+    }
   }
 }

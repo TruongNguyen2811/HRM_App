@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                     // ),
                     // 8.horizontalSpace,
                     Text(
-                      'Ngày 19, tháng 04, năm 2024',
+                      'Ngày ${DateTime.now().day}, tháng ${DateTime.now().month}, năm ${DateTime.now().year}',
                       style: Theme.of(context).textTheme.label14.copyWith(),
                     ),
                   ],
@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         8.verticalSpace,
                         Text(
-                          '08:00 AM',
+                          'N/A',
                           style: Theme.of(context)
                               .textTheme
                               .title4

@@ -20,3 +20,5 @@ class LoginFailure extends LoginState {
 }
 
 class LoginSuccess extends LoginState {}
+
+class GetBioSuccess extends LoginState {}

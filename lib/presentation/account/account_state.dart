@@ -20,3 +20,11 @@ class AccountFailure extends AccountState {
 class AccountGetDataSuccess extends AccountState {}
 
 class AccountLogOutSuccess extends AccountState {}
+
+class GetBioSuccess extends AccountState {}
+
+class AcceptBioSuccess extends AccountState {}
+
+class RequestBio extends AccountState {}
+
+class DenyBioSuccess extends AccountState {}

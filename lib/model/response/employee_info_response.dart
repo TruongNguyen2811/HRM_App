@@ -25,12 +25,14 @@ class EmployeeInfo {
   String? name;
   String? code;
   String? job_title;
+  String? time_keeping_code;
 
   EmployeeInfo({
     this.id,
     this.name,
     this.code,
     this.job_title,
+    this.time_keeping_code,
   });
 
   factory EmployeeInfo.fromJson(Map<String, dynamic> json) {

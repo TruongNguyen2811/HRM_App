@@ -5,6 +5,9 @@ import 'package:hrm/injection_container.dart';
 import 'package:hrm/presentation/booking_room/booking_room_page.dart';
 import 'package:hrm/presentation/create_order/create_order_page.dart';
 import 'package:hrm/presentation/kpi/kpi_page.dart';
+import 'package:hrm/presentation/list_booking/list_booking_page.dart';
+import 'package:hrm/presentation/list_equipment/list_equipment_page.dart';
+import 'package:hrm/presentation/list_leave/list_leave_page.dart';
 import 'package:hrm/presentation/main/main_cubit.dart';
 import 'package:hrm/presentation/time_keeping/time_keeping_page.dart';
 import 'package:hrm/utils/custom_gradient.dart';
@@ -92,60 +95,69 @@ class _HomeMenuState extends State<HomeMenuWidget> {
             ],
           ),
           20.verticalSpace,
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     Expanded(
-          //       child: ButtonServiceWidgetV2(
-          //           height: 48.h,
-          //           width: 48.w,
-          //           iconH: 28.h,
-          //           iconW: 28.w,
-          //           iconColor: AppColors.white,
-          //           icon: 'assets/icon/ic_salary.png',
-          //           label: 'Bảng lương',
-          //           bgColor: sosLinnearGradientDarkBlue(),
-          //           onCallBack: () {}),
-          //     ),
-          //     Expanded(
-          //       child: ButtonServiceWidgetV2(
-          //           height: 48.h,
-          //           width: 48.w,
-          //           iconH: 28.h,
-          //           iconW: 28.w,
-          //           iconColor: AppColors.white,
-          //           icon: 'assets/icon/ic_check-in.png',
-          //           label: 'Danh sách đơn',
-          //           bgColor: sosLinnearGradientDarkBlue(),
-          //           onCallBack: () {}),
-          //     ),
-          //     Expanded(
-          //       child: ButtonServiceWidgetV2(
-          //           height: 48.h,
-          //           width: 48.w,
-          //           iconH: 28.h,
-          //           iconW: 28.w,
-          //           iconColor: AppColors.white,
-          //           icon: 'assets/icon/ic_check-in.png',
-          //           label: 'Phiếu khám',
-          //           bgColor: sosLinnearGradientDarkBlue(),
-          //           onCallBack: () {}),
-          //     ),
-          //     Expanded(
-          //       child: ButtonServiceWidgetV2(
-          //           height: 48.h,
-          //           width: 48.w,
-          //           iconH: 28.h,
-          //           iconW: 28.w,
-          //           iconColor: AppColors.white,
-          //           icon: 'assets/icon/ic_check-in.png',
-          //           label: 'Phiếu khám',
-          //           bgColor: sosLinnearGradientDarkBlue(),
-          //           onCallBack: () {}),
-          //     ),
-          //   ],
-          // ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: ButtonServiceWidgetV2(
+                    height: 48.h,
+                    width: 48.w,
+                    iconH: 28.h,
+                    iconW: 28.w,
+                    iconColor: AppColors.white,
+                    icon: 'assets/icon/list_booking.png',
+                    label: 'Đơn đặt phòng họp',
+                    bgColor: sosLinnearGradientDarkBlue(),
+                    onCallBack: () {
+                      NavigationUtils.rootNavigatePage(
+                          context, ListBookingPage());
+                    }),
+              ),
+              Expanded(
+                child: ButtonServiceWidgetV2(
+                    height: 48.h,
+                    width: 48.w,
+                    iconH: 28.h,
+                    iconW: 28.w,
+                    iconColor: AppColors.white,
+                    icon: 'assets/icon/list.png',
+                    label: 'Danh sách đơn',
+                    bgColor: sosLinnearGradientDarkBlue(),
+                    onCallBack: () {
+                      NavigationUtils.rootNavigatePage(
+                          context, ListLeavePage());
+                    }),
+              ),
+              Expanded(
+                child: ButtonServiceWidgetV2(
+                    height: 48.h,
+                    width: 48.w,
+                    iconH: 28.h,
+                    iconW: 28.w,
+                    iconColor: AppColors.white,
+                    icon: 'assets/icon/suitcase.png',
+                    label: 'Xin văn phòng phẩm',
+                    bgColor: sosLinnearGradientDarkBlue(),
+                    onCallBack: () {}),
+              ),
+              Expanded(
+                child: ButtonServiceWidgetV2(
+                    height: 48.h,
+                    width: 48.w,
+                    iconH: 28.h,
+                    iconW: 28.w,
+                    iconColor: AppColors.white,
+                    icon: 'assets/icon/document-file.png',
+                    label: 'Danh sách đơn xin văn phòng phẩm',
+                    bgColor: sosLinnearGradientDarkBlue(),
+                    onCallBack: () {
+                      NavigationUtils.rootNavigatePage(
+                          context, ListEquipmentPage());
+                    }),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -20,7 +20,7 @@ Map<String, dynamic> _$AttendanceRequestToJson(AttendanceRequest instance) =>
 
 AttendanceModel _$AttendanceModelFromJson(Map<String, dynamic> json) =>
     AttendanceModel(
-      args: (json['args'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      args: json['args'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$AttendanceModelToJson(AttendanceModel instance) =>

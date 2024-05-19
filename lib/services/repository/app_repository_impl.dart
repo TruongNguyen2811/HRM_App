@@ -6,6 +6,10 @@ import 'package:hrm/model/response/attendance_response.dart';
 import 'package:hrm/model/response/auth_response.dart';
 import 'package:hrm/model/response/employee_info_response.dart';
 import 'package:hrm/model/response/kpi_response.dart';
+import 'package:hrm/model/response/list_booking_room_response.dart';
+import 'package:hrm/model/response/list_equipment_response.dart';
+import 'package:hrm/model/response/list_leave_response.dart';
+import 'package:hrm/model/response/list_quotes.dart';
 import 'package:hrm/model/response/room_info_response.dart';
 import 'package:hrm/model/response/success_message_response.dart';
 import 'package:hrm/services/api/app_client.dart';
@@ -139,6 +143,133 @@ class AppRepository extends BaseRepository {
       }));
       return ApiResult.success(data: response);
     } catch (e) {
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<List<Quotes>>> getListQuotes(
+      {required AttendanceRequest body}) async {
+    try {
+      final response = await appClient.getListQuotes(body);
+
+      if (!Utils.isEmpty(response.error)) {
+        print('check error 123');
+        return handleErrorApi('Đã xảy ra lối không mong muôn');
+      }
+      print('12311111111111 ${response}');
+      logger.e(response.error);
+
+      return ApiResult.success(data: response.result);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<SuccessMessage>> createLeaveRequest(
+      {required String employee_code,
+      required String time_keeping_code,
+      required String from_date,
+      required String to_date,
+      required String reasons,
+      required String holiday_status_id,
+      required String hours,
+      required String company}) async {
+    try {
+      print(
+          'check send ${employee_code} , ${time_keeping_code}, ${employee_code}, ${from_date}, ${to_date}, ${reasons}, ${holiday_status_id}, ${hours}, ${company}');
+      SuccessMessage response =
+          await appClient.createLeaveRequest(wrapMapFormData({
+        "employee_code": employee_code,
+        "time_keeping_code": time_keeping_code,
+        "from_date": from_date,
+        "to_date": to_date,
+        // "for_reasons": for_reasons,
+        "reasons": reasons,
+        "holiday_status_id": holiday_status_id,
+        "hours": hours,
+        "company": company,
+      }));
+      return ApiResult.success(data: response);
+    } catch (e) {
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<SuccessMessage>> changePassWord(
+      {required AttendanceRequest body}) async {
+    try {
+      final response = await appClient.changePassWord(body);
+      return ApiResult.success(data: response);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<ListBookingRoomResponse>> getListBookingRoom(
+      {required AttendanceRequest body}) async {
+    try {
+      final response = await appClient.getListBookingRoom(body);
+
+      if (!Utils.isEmpty(response.error)) {
+        print('check error 123');
+        return handleErrorApi('Đã xảy ra lối không mong muôn');
+      }
+      print('12311111111111 ${response}');
+      logger.e(response.error);
+
+      return ApiResult.success(data: response.result);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<ListLeaveResponse>> getLeaveListv2(
+      {required AttendanceRequest body}) async {
+    try {
+      final response = await appClient.getLeaveListv2(body);
+
+      if (!Utils.isEmpty(response.error)) {
+        print('check error 123');
+        return handleErrorApi('Đã xảy ra lối không mong muôn');
+      }
+      print('12311111111111 ${response}');
+      logger.e(response.error);
+
+      return ApiResult.success(data: response.result);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<ListEquipmentResponse>> getEquipmentList(
+      {required AttendanceRequest body}) async {
+    try {
+      final response = await appClient.getEquipmentList(body);
+
+      if (!Utils.isEmpty(response.error)) {
+        print('check error 123');
+        return handleErrorApi('Đã xảy ra lối không mong muôn');
+      }
+      print('12311111111111 ${response}');
+      logger.e(response.error);
+
+      return ApiResult.success(data: response.result);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
       return handleErrorApi(e);
     }
   }

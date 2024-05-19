@@ -7,6 +7,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hrm/configuration/colors.dart';
 import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/utils/enum.dart';
+import 'package:hrm/utils/logger.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
   static bool isEmpty(Object? text) {
@@ -115,6 +117,30 @@ class Utils {
         );
       }
     });
+  }
+
+  static Future launchURL(String url,
+      {LaunchMode mode = LaunchMode.platformDefault}) async {
+    url = url.replaceAll(" ", "");
+    try {
+      await launchUrl(Uri.parse(url), mode: mode);
+    } catch (e) {
+      logger.d('Đã có lỗi xảy ra');
+      logger.d(e);
+    }
+  }
+
+  static String getTypeUrlLauncher(String url, LaunchType type) {
+    switch (type) {
+      case LaunchType.LAUNCH_TYPE_WEB:
+        return url;
+      case LaunchType.LAUNCH_TYPE_EMAIL:
+        return "mailto:$url";
+      case LaunchType.LAUNCH_TYPE_PHONE:
+        return "tel:$url";
+      case LaunchType.LAUNCH_TYPE_SMS:
+        return "sms:$url";
+    }
   }
 
   // Future<void> uint8ListToFile(Uint8List uint8list) async {

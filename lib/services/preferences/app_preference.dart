@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:hrm/model/local/bio_model.dart';
 import 'package:hrm/model/response/auth_response.dart';
 import 'package:hrm/utils/logger.dart';
 import 'package:injectable/injectable.dart';
@@ -19,6 +20,8 @@ class AppPreferences {
   static const String KEY_AUTH_TOKEN = "KEY_AUTH_TOKEN";
   static const String KEY_REFRESH_TOKEN = "KEY_REFRESH_TOKEN";
   static const String PROFILE = "PROFILE";
+  static const String KEY_BIO_CONFIG = 'KEY_BIO_CONFIG';
+  static const String KEY_BIO_MODEL = 'KEY_BIO_MODEL';
   String? accessTokenAnonymous;
   String? get authToken {
     return isLoggedIn
@@ -69,5 +72,42 @@ class AppPreferences {
 
   void removeUserProfile() async {
     _preference.remove(PROFILE);
+  }
+
+  saveBioModel(BioModel bio) async {
+    String userProfile;
+    try {
+      userProfile = json.encode(bio.toJson());
+    } catch (e) {
+      logger.e(e);
+      userProfile = '';
+    }
+    await _preference.setString(KEY_BIO_MODEL, userProfile);
+  }
+
+  BioModel? get getBioModel {
+    try {
+      var userString = _preference.getString(KEY_BIO_MODEL);
+      return BioModel.fromJson(json.decode(userString!));
+    } catch (e) {
+      logger.e(e);
+    }
+    return null;
+  }
+
+  void removeBioModel() async {
+    await _preference.remove(KEY_BIO_MODEL);
+  }
+
+  saveBioConfig(bool bio) async {
+    await _preference.setBool(KEY_BIO_CONFIG, bio);
+  }
+
+  bool get getBioConfig {
+    return _preference.getBool(KEY_BIO_CONFIG) ?? false;
+  }
+
+  removeBioConfig() async {
+    await _preference.remove(KEY_BIO_CONFIG);
   }
 }

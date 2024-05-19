@@ -48,7 +48,7 @@ dependencies:
   fluttertoast: ^8.1.2
   google_fonts: ^6.1.0
   # alice: null
-  timeago: ^3.6.1
+  timeago: ^3.3.0
   overlay_support: ^2.1.0
   pull_to_refresh: ^2.0.0
   equatable: ^2.0.5
@@ -63,6 +63,8 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   calendar_date_picker2: ^0.5.5
   flutter_keyboard_visibility: ^5.4.1
+  url_launcher:
+  local_auth:
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -70,6 +72,9 @@ flutter_launcher_icons:
   remove_alpha_ios: false
   image_path: "assets/icon/logo_hrm.png"
   min_sdk_android: 21
+
+dependency_overrides:
+  local_auth: 1.1.11
 
 dev_dependencies:
   flutter_test:

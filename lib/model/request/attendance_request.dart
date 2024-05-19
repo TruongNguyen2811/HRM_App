@@ -18,7 +18,7 @@ class AttendanceRequest {
 
 @JsonSerializable()
 class AttendanceModel {
-  final List<String>? args;
+  final List<dynamic>? args;
 
   AttendanceModel({
     this.args,
