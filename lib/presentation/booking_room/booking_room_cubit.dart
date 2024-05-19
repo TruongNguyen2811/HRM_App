@@ -35,8 +35,6 @@ class BookingRoomCubit extends Cubit<BookingRoomState> {
 
   Future<void> Submit() async {
     emit(BookingRoomLoading());
-    // print(
-    //     'check date ${DateFormat('dd-MM-yyyy hh:mm:ss a').parse(fromDate.text).toStringFormat(AppDateFormat.yearMonthDay)}');
     DateTime bookingFrom = DateTime(
       fromDate.text.toDateFormat(AppDateFormat.dayMonthYear).year,
       fromDate.text.toDateFormat(AppDateFormat.dayMonthYear).month,
@@ -67,10 +65,6 @@ class BookingRoomCubit extends Cubit<BookingRoomState> {
       purpose: reason.text,
     );
     response.when(success: (data) {
-      print(
-          'check data ${infoRoomChoose?.id.toString() ?? ''}, ${employeeChoose?.id.toString() ?? ''}, ${fromDate.text.toDateFormat(AppDateFormat.dayMonthYear).toStringFormat(AppDateFormat.yearMonthDay)},${bookingTimeFrom.toStringFormat(AppDateFormat.yearMonthDayHourMinuteSecondSSS)}, ${bookingTimeTo.toStringFormat(AppDateFormat.yearMonthDayHourMinuteSecondSSS)}');
-      // emit(FormForPageInitial());
-      // emit(FormForPageFailure('123'));
       try {
         SuccessMessage listRoom = data;
 
@@ -78,7 +72,6 @@ class BookingRoomCubit extends Cubit<BookingRoomState> {
       } catch (e) {
         emit(BookingRoomFailure(messageError: 'Đã xảy ra lỗi không mong muốn'));
       }
-
       // emit(state);
     }, failure: (error) {
       emit(BookingRoomFailure(

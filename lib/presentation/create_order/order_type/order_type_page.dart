@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
+import 'package:hrm/model/response/list_quotes.dart';
 import 'package:hrm/presentation/create_order/order_type/order_type_cubit.dart';
 import 'package:hrm/presentation/create_order/order_type/order_type_state.dart';
 import 'package:hrm/utils/custom_gradient.dart';
@@ -13,8 +14,9 @@ import 'package:hrm/widget/button_widget.dart';
 import 'package:hrm/widget/single_tap.dart';
 
 class OrderTypePage extends StatefulWidget {
-  String? type;
-  OrderTypePage({super.key, this.type});
+  Quotes? type;
+  List<Quotes> listQuotes;
+  OrderTypePage({super.key, this.type, required this.listQuotes});
 
   @override
   State<OrderTypePage> createState() => _OrderTypePageState();
@@ -26,7 +28,7 @@ class _OrderTypePageState extends State<OrderTypePage> {
   void initState() {
     // TODO: implement initState
     cubit = OrderTypeCubit();
-    cubit.selected = widget.type ?? '';
+    cubit.selected = widget.type ?? Quotes();
     super.initState();
   }
 
@@ -81,16 +83,23 @@ class _OrderTypePageState extends State<OrderTypePage> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(children: [
-                  item('Đơn xin nghỉ phép'),
-                  item('Đơn nghỉ không phép'),
-                  item('Đơn đi muộn / về sớm'),
-                  item('Đơn xin ra ngoài'),
-                  item('Đơn xin công tác'),
-                  item('Đơn xin đổi ca'),
-                  item('Giải trình quên chấm công'),
-                  item('Giải trình chấm công không đúng giờ'),
-                  item('Đơn đổi giờ làm việc'),
-                  item('Đơn xin sử dụng chế độ con nhỏ'),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: widget.listQuotes.length,
+                      itemBuilder: (context, index) {
+                        return item(widget.listQuotes[index] ?? Quotes());
+                      })
+                  // item('Đơn xin nghỉ phép'),
+                  // item('Đơn nghỉ không phép'),
+                  // item('Đơn đi muộn / về sớm'),
+                  // item('Đơn xin ra ngoài'),
+                  // item('Đơn xin công tác'),
+                  // item('Đơn xin đổi ca'),
+                  // item('Giải trình quên chấm công'),
+                  // item('Giải trình chấm công không đúng giờ'),
+                  // item('Đơn đổi giờ làm việc'),
+                  // item('Đơn xin sử dụng chế độ con nhỏ'),
                 ]),
               ),
             ),
@@ -142,11 +151,11 @@ class _OrderTypePageState extends State<OrderTypePage> {
     ));
   }
 
-  Widget item(String title) {
+  Widget item(Quotes quotes) {
     return SingleTapDetector(
       onTap: () {
         setState(() {
-          cubit.selected = title;
+          cubit.selected = quotes;
         });
       },
       child: Container(
@@ -159,7 +168,7 @@ class _OrderTypePageState extends State<OrderTypePage> {
                 child: Container(
                   width: 270.w,
                   child: Text(
-                    '${title}',
+                    '${quotes.name}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
@@ -170,7 +179,7 @@ class _OrderTypePageState extends State<OrderTypePage> {
                 ),
               ),
               Image.asset(
-                cubit.selected == title
+                cubit.selected.id == quotes.id
                     ? "assets/icon/ic_tick_square.png"
                     : "assets/icon/ic_untick_square.png",
                 width: 20.w,

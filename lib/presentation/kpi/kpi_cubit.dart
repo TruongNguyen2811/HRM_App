@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hrm/model/response/attendance_response.dart';
 import 'package:hrm/model/response/kpi_response.dart';
 import 'package:hrm/presentation/kpi/kpi_state.dart';
 import 'package:hrm/services/api/api_result.dart';
 import 'package:hrm/services/api/network_exceptions.dart';
-import 'package:hrm/services/preferences/app_preference.dart';
-import 'package:hrm/utils/date_extension.dart';
-import '../../injection_container.dart';
+// import 'package:hrm/services/preferences/app_preference.dart';
+// import '../../injection_container.dart';
 import '../../services/repository/app_repository_impl.dart';
 
 // import 'package:package_info_plus/package_info_plus.dart';
@@ -15,14 +13,14 @@ import '../../services/repository/app_repository_impl.dart';
 class KPICubit extends Cubit<KPIState> {
   KPICubit() : super(KPIInitial());
   AppRepository repository = AppRepository();
-  final AppPreferences _pref = getIt<AppPreferences>();
+  // final AppPreferences _pref = getIt<AppPreferences>();
   TextEditingController datePicker = TextEditingController();
   List<KPIResponse> kpiResponse = [];
 
   getKPIReport() async {
     emit(KPILoading());
     String filter =
-        '[["date" , "=" , "2024-3-1"],["employee_code","=" ,"APG240227007"]]';
+        '[["date" , "=" , "${DateTime.now().year}-${DateTime.now().month}-1"],["employee_code","=" ,"APG240227007"]]';
     String query = '{*}';
     // AttendanceRequest request = AttendanceRequest(
     //     params: AttendanceModel(args: [

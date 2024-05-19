@@ -18,3 +18,7 @@ class CreateOrderFailure extends CreateOrderState {
 }
 
 class CreateOrderSuccess extends CreateOrderState {}
+
+class GetListQuotesSuccess extends CreateOrderState {}
+
+class GetEmployeeSuccess extends CreateOrderState {}

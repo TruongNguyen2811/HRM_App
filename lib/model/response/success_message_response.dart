@@ -6,10 +6,12 @@ part 'success_message_response.g.dart';
 class SuccessMessage {
   bool? success;
   String? message;
+  bool? is_success;
 
   SuccessMessage({
     this.success,
     this.message,
+    this.is_success,
   });
 
   factory SuccessMessage.fromJson(Map<String, dynamic> json) {

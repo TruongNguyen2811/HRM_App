@@ -15,6 +15,13 @@ extension StringExtension on String {
     return DateFormat(format.formatString).parse(this).toLocal();
   }
 
+  String toDateFormatString(AppDateFormat format, AppDateFormat formatString) {
+    return DateFormat(format.formatString)
+        .parse(this)
+        .toLocal()
+        .toStringFormat(formatString);
+  }
+
   DateTime toDateFormatToLocal(AppDateFormat format, {bool utc = false}) {
     return DateFormat(format.formatString).parse(this, utc).toLocal();
   }

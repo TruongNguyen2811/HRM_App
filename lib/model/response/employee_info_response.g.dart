@@ -27,6 +27,7 @@ EmployeeInfo _$EmployeeInfoFromJson(Map<String, dynamic> json) => EmployeeInfo(
       name: json['name'] as String?,
       code: json['code'] as String?,
       job_title: json['job_title'] as String?,
+      time_keeping_code: json['time_keeping_code'] as String?,
     );
 
 Map<String, dynamic> _$EmployeeInfoToJson(EmployeeInfo instance) =>
@@ -35,4 +36,5 @@ Map<String, dynamic> _$EmployeeInfoToJson(EmployeeInfo instance) =>
       'name': instance.name,
       'code': instance.code,
       'job_title': instance.job_title,
+      'time_keeping_code': instance.time_keeping_code,
     };

@@ -6,9 +6,12 @@ import 'package:hrm/configuration/colors.dart';
 import 'package:hrm/injection_container.dart';
 import 'package:hrm/presentation/account/account_cubit.dart';
 import 'package:hrm/presentation/account/account_state.dart';
+import 'package:hrm/presentation/account/change_pass/change_password_page.dart';
 import 'package:hrm/presentation/account/widget/menu_account_widget.dart';
 import 'package:hrm/presentation/authentication/authentication_cubit.dart';
 import 'package:hrm/utils/custom_theme.dart';
+import 'package:hrm/utils/enum.dart';
+import 'package:hrm/utils/navigation_utils.dart';
 import 'package:hrm/utils/utils.dart';
 import 'package:hrm/widget/customcacgeImage_widget.dart';
 import 'package:hrm/widget/new_appbar_widget.dart';
@@ -28,6 +31,7 @@ class _AccountPageState extends State<AccountPage> {
     // TODO: implement initState
     _cubit = AccountCubit();
     _cubit.getData();
+    _cubit.onCheckAuth();
     super.initState();
   }
 
@@ -44,6 +48,10 @@ class _AccountPageState extends State<AccountPage> {
             AppCubit authCubit = getIt<AppCubit>();
             authCubit.logout();
             // getIt<AppCubit>().logout();
+          }
+          if (state is RequestBio) {
+            Utils.showToast(context,
+                'Quét sinh trắc lỗi hoặc Chức năng sinh trắc chưa được bật trong Cài đặt của thiết bị');
           }
         },
         builder: (BuildContext context, AccountState state) {
@@ -191,31 +199,37 @@ class _AccountPageState extends State<AccountPage> {
                 borderRadius: BorderRadius.circular(16.r)),
             child: Column(
               children: [
-                // MenuAccountWidget(
-                //   prefixIcon: 'assets/icon/reset-password.png',
-                //   title: 'Thay đổi mật khẩu',
-                //   onTap: () {},
-                // ),
-                // MenuAccountWidget(
-                //   prefixIcon: 'assets/icon/fingerprint.png',
-                //   title: 'Đăng nhập nhanh',
-                //   valueSwitch: true,
-                //   onChangeSwitch: (value) {
-                //     // _cubit.onAcceptBioAuth();
-                //   },
-                //   showArrow: false,
-                //   showSwitch: true,
-                // ),
+                MenuAccountWidget(
+                  prefixIcon: 'assets/icon/reset-password.png',
+                  title: 'Thay đổi mật khẩu',
+                  onTap: () {
+                    NavigationUtils.rootNavigatePage(
+                        context, ChangePassWordPage());
+                  },
+                ),
+                MenuAccountWidget(
+                  prefixIcon: 'assets/icon/fingerprint.png',
+                  title: 'Đăng nhập nhanh',
+                  valueSwitch: _cubit.checkBio,
+                  onChangeSwitch: (value) {
+                    _cubit.onBioAuth();
+                  },
+                  showArrow: false,
+                  showSwitch: true,
+                ),
                 // MenuAccountWidget(
                 //   prefixIcon: 'assets/icon/file.png',
                 //   title: 'Điều khoản và chính sách',
                 //   onTap: () {},
                 // ),
-                // MenuAccountWidget(
-                //   prefixIcon: 'assets/icon/customer-support.png',
-                //   title: 'Trung tâm hỗ trợ',
-                //   onTap: () {},
-                // ),
+                MenuAccountWidget(
+                  prefixIcon: 'assets/icon/customer-support.png',
+                  title: 'Trung tâm hỗ trợ',
+                  onTap: () {
+                    Utils.launchURL(Utils.getTypeUrlLauncher(
+                        '0963591488', LaunchType.LAUNCH_TYPE_PHONE));
+                  },
+                ),
                 // MenuAccountWidget(
                 //   prefixIcon: 'assets/icon/delete-document.png',
                 //   title: 'Xoá tài khoản',
