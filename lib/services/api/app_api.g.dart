@@ -219,13 +219,13 @@ class _AppApi implements AppApi {
   }
 
   @override
-  Future<BaseResponse<SuccessMessage>> createLeaveRequest(body) async {
+  Future<SuccessMessage> createLeaveRequest(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = body;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<BaseResponse<SuccessMessage>>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<SuccessMessage>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -237,10 +237,7 @@ class _AppApi implements AppApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = BaseResponse<SuccessMessage>.fromJson(
-      _result.data!,
-      (json) => SuccessMessage.fromJson(json as Map<String, dynamic>),
-    );
+    final value = SuccessMessage.fromJson(_result.data!);
     return value;
   }
 

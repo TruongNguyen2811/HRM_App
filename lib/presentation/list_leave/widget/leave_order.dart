@@ -40,7 +40,7 @@ class LeaveOrderWidget extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .text12w600
-                    .copyWith(color: AppColors.blue),
+                    .copyWith(color: AppColors.success1),
               ),
             ] else ...[
               Text(
@@ -68,15 +68,20 @@ class LeaveOrderWidget extends StatelessWidget {
         ),
         4.verticalSpace,
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Lý do: ',
               style: Theme.of(context).textTheme.text14W700.copyWith(),
             ),
             if (item.reasons != false) ...[
-              Text(
-                "${item.reasons}",
-                style: Theme.of(context).textTheme.text14W400.copyWith(),
+              Expanded(
+                child: Text(
+                  "${item.reasons}",
+                  style: Theme.of(context).textTheme.text14W400.copyWith(),
+                  maxLines: 4,
+                  textAlign: TextAlign.left,
+                ),
               ),
             ]
           ],
@@ -89,7 +94,7 @@ class LeaveOrderWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.text14W700.copyWith(),
             ),
             Text(
-              "${item.date_from?.toDateFormatString(AppDateFormat.yearMonthDayHourMinuteSecondSSS, AppDateFormat.dayMonthYearHourMinute) ?? ''}",
+              "${item.date_from?.toDateFormatString(AppDateFormat.yearMonthDayHourMinuteSecondSSS, AppDateFormat.dayMonthYear) ?? ''}",
               style: Theme.of(context).textTheme.text14W400.copyWith(),
             ),
           ],
@@ -102,7 +107,7 @@ class LeaveOrderWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.text14W700.copyWith(),
             ),
             Text(
-              "${item.date_to?.toDateFormatString(AppDateFormat.yearMonthDayHourMinuteSecondSSS, AppDateFormat.dayMonthYearHourMinute) ?? ''}",
+              "${item.date_to?.toDateFormatString(AppDateFormat.yearMonthDayHourMinuteSecondSSS, AppDateFormat.dayMonthYear) ?? ''}",
               // '${item.date_to}',
               style: Theme.of(context).textTheme.text14W400.copyWith(),
             ),

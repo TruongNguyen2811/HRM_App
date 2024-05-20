@@ -60,7 +60,7 @@ abstract class AppApi {
   );
 
   @POST("///create_leave_request")
-  Future<BaseResponse<SuccessMessage>> createLeaveRequest(
+  Future<SuccessMessage> createLeaveRequest(
     @Body() dynamic body,
   );
 

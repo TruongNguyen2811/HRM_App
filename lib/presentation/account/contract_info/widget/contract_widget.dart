@@ -51,20 +51,33 @@ class ContractWidget extends StatelessWidget {
                     .text12w600
                     .copyWith(color: AppColors.success1),
               ),
+            ] else ...[
+              Text(
+                'Sắp hết hạn',
+                style: Theme.of(context)
+                    .textTheme
+                    .text12w600
+                    .copyWith(color: AppColors.orange),
+              ),
             ]
           ],
         ),
         4.verticalSpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Mã hợp đồng: ',
               style: Theme.of(context).textTheme.text14W700.copyWith(),
             ),
-            Text(
-              '${item.name ?? 'NA'}',
-              style: Theme.of(context).textTheme.text14W400.copyWith(),
+            Expanded(
+              child: Text(
+                '${item.name ?? 'NA'}',
+                style: Theme.of(context).textTheme.text14W400.copyWith(),
+                maxLines: 4,
+                textAlign: TextAlign.right,
+              ),
             ),
           ],
         ),
