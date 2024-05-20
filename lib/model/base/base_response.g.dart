@@ -13,8 +13,9 @@ BaseResponse<T> _$BaseResponseFromJson<T>(
     BaseResponse<T>(
       jsonrpc: json['jsonrpc'],
       id: json['id'],
-      result: fromJsonT(json['result']),
-    )..error = json['error'];
+      result: _$nullableGenericFromJson(json['result'], fromJsonT),
+      error: json['error'],
+    );
 
 Map<String, dynamic> _$BaseResponseToJson<T>(
   BaseResponse<T> instance,
@@ -23,6 +24,18 @@ Map<String, dynamic> _$BaseResponseToJson<T>(
     <String, dynamic>{
       'jsonrpc': instance.jsonrpc,
       'id': instance.id,
-      'result': toJsonT(instance.result),
+      'result': _$nullableGenericToJson(instance.result, toJsonT),
       'error': instance.error,
     };
+
+T? _$nullableGenericFromJson<T>(
+  Object? input,
+  T Function(Object? json) fromJson,
+) =>
+    input == null ? null : fromJson(input);
+
+Object? _$nullableGenericToJson<T>(
+  T? input,
+  Object? Function(T value) toJson,
+) =>
+    input == null ? null : toJson(input);

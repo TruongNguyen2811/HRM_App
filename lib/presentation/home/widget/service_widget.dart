@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
 import 'package:hrm/injection_container.dart';
 import 'package:hrm/presentation/booking_room/booking_room_page.dart';
+import 'package:hrm/presentation/create_equipment/create_equipment_page.dart';
 import 'package:hrm/presentation/create_order/create_order_page.dart';
 import 'package:hrm/presentation/kpi/kpi_page.dart';
 import 'package:hrm/presentation/list_booking/list_booking_page.dart';
@@ -139,7 +140,10 @@ class _HomeMenuState extends State<HomeMenuWidget> {
                     icon: 'assets/icon/suitcase.png',
                     label: 'Xin văn phòng phẩm',
                     bgColor: sosLinnearGradientDarkBlue(),
-                    onCallBack: () {}),
+                    onCallBack: () {
+                      NavigationUtils.rootNavigatePage(
+                          context, CreateEquipmentPage());
+                    }),
               ),
               Expanded(
                 child: ButtonServiceWidgetV2(

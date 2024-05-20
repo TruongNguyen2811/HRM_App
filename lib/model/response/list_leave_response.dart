@@ -31,7 +31,7 @@ class LeaveInfo {
   dynamic for_reasons;
   dynamic activity_state;
   dynamic reasons;
-
+  String? state;
   LeaveInfo({
     this.id,
     this.user_id,
@@ -43,6 +43,7 @@ class LeaveInfo {
     this.activity_state,
     this.for_reasons,
     this.reasons,
+    this.state,
   });
 
   factory LeaveInfo.fromJson(Map<String, dynamic> json) {

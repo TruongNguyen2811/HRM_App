@@ -26,6 +26,7 @@ class EmployeeInfo {
   String? code;
   String? job_title;
   String? time_keeping_code;
+  List<dynamic>? company_id;
 
   EmployeeInfo({
     this.id,
@@ -33,6 +34,7 @@ class EmployeeInfo {
     this.code,
     this.job_title,
     this.time_keeping_code,
+    this.company_id,
   });
 
   factory EmployeeInfo.fromJson(Map<String, dynamic> json) {

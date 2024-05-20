@@ -29,6 +29,7 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
   TextEditingController totalHours = TextEditingController();
   TextEditingController content = TextEditingController();
   TextEditingController reason = TextEditingController();
+  TextEditingController minutes = TextEditingController();
   ProfileAuthResponse? user;
 
   getProfile() {
@@ -89,8 +90,9 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
       reasons: reason.text,
       holiday_status_id: '${selectedQuote.id}',
       hours: '0',
-      company:
-          'CÔNG TY CỔ PHẦN QUẢN LÝ KHÁCH SẠN & DỊCH VỤ MANDALA - CHI NHÁNH HÒA BÌNH',
+      for_reasons: '1',
+      company: employeeChoose?.company_id?[1] ?? 'N/A',
+      minutes: minutes.text,
     );
     response.when(success: (data) {
       try {
@@ -103,7 +105,8 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
       // emit(state);
     }, failure: (error) {
       emit(CreateOrderFailure(
-          messageError: NetworkExceptions.getErrorMessage(error)));
+          messageError:
+              'Đã xảy ra lỗi không mong muốn, Vui lòng kiểm tra lại quỹ phép'));
     });
   }
 

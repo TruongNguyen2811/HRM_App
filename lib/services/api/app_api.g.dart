@@ -219,13 +219,13 @@ class _AppApi implements AppApi {
   }
 
   @override
-  Future<SuccessMessage> createLeaveRequest(body) async {
+  Future<BaseResponse<SuccessMessage>> createLeaveRequest(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = body;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<SuccessMessage>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<SuccessMessage>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -237,19 +237,22 @@ class _AppApi implements AppApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SuccessMessage.fromJson(_result.data!);
+    final value = BaseResponse<SuccessMessage>.fromJson(
+      _result.data!,
+      (json) => SuccessMessage.fromJson(json as Map<String, dynamic>),
+    );
     return value;
   }
 
   @override
-  Future<SuccessMessage> changePassWord(body) async {
+  Future<BaseResponse<SuccessMessage>> changePassWord(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<SuccessMessage>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<SuccessMessage>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -261,7 +264,10 @@ class _AppApi implements AppApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SuccessMessage.fromJson(_result.data!);
+    final value = BaseResponse<SuccessMessage>.fromJson(
+      _result.data!,
+      (json) => SuccessMessage.fromJson(json as Map<String, dynamic>),
+    );
     return value;
   }
 
@@ -342,6 +348,60 @@ class _AppApi implements AppApi {
     final value = BaseResponse<ListEquipmentResponse>.fromJson(
       _result.data!,
       (json) => ListEquipmentResponse.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
+  }
+
+  @override
+  Future<BaseResponse<ListContractResponse>> getContractInfo(body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<ListContractResponse>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '//object/hr.contract/get_contracts',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<ListContractResponse>.fromJson(
+      _result.data!,
+      (json) => ListContractResponse.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
+  }
+
+  @override
+  Future<BaseResponse<DepartmentList>> getDepartmentList(body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<DepartmentList>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '//object/hr.department/get_department_list',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<DepartmentList>.fromJson(
+      _result.data!,
+      (json) => DepartmentList.fromJson(json as Map<String, dynamic>),
     );
     return value;
   }

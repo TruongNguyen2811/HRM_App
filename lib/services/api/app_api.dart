@@ -5,6 +5,8 @@ import 'package:hrm/model/request/attendance_request.dart';
 import 'package:hrm/model/request/login_request.dart';
 import 'package:hrm/model/response/attendance_response.dart';
 import 'package:hrm/model/response/auth_response.dart';
+import 'package:hrm/model/response/contract_response.dart';
+import 'package:hrm/model/response/department_list_response.dart';
 import 'package:hrm/model/response/employee_info_response.dart';
 import 'package:hrm/model/response/kpi_response.dart';
 import 'package:hrm/model/response/list_booking_room_response.dart';
@@ -58,13 +60,13 @@ abstract class AppApi {
   );
 
   @POST("///create_leave_request")
-  Future<SuccessMessage> createLeaveRequest(
+  Future<BaseResponse<SuccessMessage>> createLeaveRequest(
     @Body() dynamic body,
   );
 
   @POST("////object/hr.employee/change_user_password_general_manager")
   // params: {args: [5859, "apec123"]}
-  Future<SuccessMessage> changePassWord(
+  Future<BaseResponse<SuccessMessage>> changePassWord(
     @Body() AttendanceRequest body,
   );
 
@@ -82,6 +84,18 @@ abstract class AppApi {
 
   @POST("//object/equipment.request/get_equipment_request")
   Future<BaseResponse<ListEquipmentResponse>> getEquipmentList(
+    // {params: {args: ["", "", "", "", "", "", "", "", "", 10, 1]}}
+    @Body() AttendanceRequest body,
+  );
+
+  @POST("//object/hr.contract/get_contracts")
+  Future<BaseResponse<ListContractResponse>> getContractInfo(
+    // {params: {args: ["", "", "", "", "", "", "", "", "", 10, 1]}}
+    @Body() AttendanceRequest body,
+  );
+
+  @POST("//object/hr.department/get_department_list")
+  Future<BaseResponse<DepartmentList>> getDepartmentList(
     // {params: {args: ["", "", "", "", "", "", "", "", "", 10, 1]}}
     @Body() AttendanceRequest body,
   );

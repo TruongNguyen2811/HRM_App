@@ -5,6 +5,7 @@ import 'package:hrm/configuration/colors.dart';
 import 'package:hrm/presentation/list_equipment/list_equipment_cubit.dart';
 import 'package:hrm/presentation/list_equipment/list_equipment_state.dart';
 import 'package:hrm/presentation/list_equipment/widget/equipment_info.dart';
+import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/utils/utils.dart';
 import 'package:hrm/widget/new_appbar_widget.dart';
 import 'package:hrm/widget/show_loading_widget.dart';
@@ -61,25 +62,53 @@ class _ListEquipmentPageState extends State<ListEquipmentPage> {
                 _refreshController.refreshCompleted();
               },
               child: SingleChildScrollView(
-                  child: ListView.separated(
-                padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-                itemBuilder: (context, index) {
-                  return EquipmentInfoWidget(
-                    item: _cubit.listEquipment[index],
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: 8.h,
-                  );
-                },
-                itemCount: _cubit.listEquipment.length,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-              )),
+                  child: Utils.isEmptyArray(_cubit.listEquipment)
+                      ? _emptyWidget()
+                      : ListView.separated(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 12.h, horizontal: 16.w),
+                          itemBuilder: (context, index) {
+                            return EquipmentInfoWidget(
+                              item: _cubit.listEquipment[index],
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: 8.h,
+                            );
+                          },
+                          itemCount: _cubit.listEquipment.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                        )),
             ),
           )
         ]),
+      ),
+    );
+  }
+
+  Widget _emptyWidget() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          150.verticalSpace,
+          Image.asset(
+            'assets/icon/ic_no_result.png',
+            height: 140.w,
+            width: 140.w,
+          ),
+          16.verticalSpace,
+          Text(
+            'Không tìm thấy kết quả',
+            style: Theme.of(context)
+                .textTheme
+                .text16w500
+                .copyWith(color: AppColors.dark7),
+          ),
+          100.verticalSpace,
+        ],
       ),
     );
   }
