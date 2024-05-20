@@ -26,23 +26,31 @@ class LeaveOrderWidget extends StatelessWidget {
               '${item.user_id?[1] ?? ''}',
               style: Theme.of(context).textTheme.buttonNormal.copyWith(),
             ),
-            // if (item.state == 'confirm') ...[
-            //   Text(
-            //     'Đã duyệt',
-            //     style: Theme.of(context)
-            //         .textTheme
-            //         .text12w600
-            //         .copyWith(color: AppColors.success1),
-            //   ),
-            // ] else ...[
-            //   Text(
-            //     'Chờ duyệt',
-            //     style: Theme.of(context)
-            //         .textTheme
-            //         .text12w600
-            //         .copyWith(color: AppColors.danger1),
-            //   ),
-            // ]
+            if (item.state == 'refuse') ...[
+              Text(
+                'Từ chối',
+                style: Theme.of(context)
+                    .textTheme
+                    .text12w600
+                    .copyWith(color: AppColors.danger1),
+              ),
+            ] else if (item.state == 'validate') ...[
+              Text(
+                'Đã duyệt',
+                style: Theme.of(context)
+                    .textTheme
+                    .text12w600
+                    .copyWith(color: AppColors.blue),
+              ),
+            ] else ...[
+              Text(
+                'Chờ xác nhận',
+                style: Theme.of(context)
+                    .textTheme
+                    .text12w600
+                    .copyWith(color: AppColors.orange),
+              ),
+            ]
           ],
         ),
         4.verticalSpace,

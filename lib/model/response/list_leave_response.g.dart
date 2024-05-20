@@ -31,6 +31,7 @@ LeaveInfo _$LeaveInfoFromJson(Map<String, dynamic> json) => LeaveInfo(
       activity_state: json['activity_state'],
       for_reasons: json['for_reasons'],
       reasons: json['reasons'],
+      state: json['state'] as String?,
     );
 
 Map<String, dynamic> _$LeaveInfoToJson(LeaveInfo instance) => <String, dynamic>{
@@ -44,4 +45,5 @@ Map<String, dynamic> _$LeaveInfoToJson(LeaveInfo instance) => <String, dynamic>{
       'for_reasons': instance.for_reasons,
       'activity_state': instance.activity_state,
       'reasons': instance.reasons,
+      'state': instance.state,
     };

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hrm/configuration/colors.dart';
@@ -226,6 +227,35 @@ class _CreateOrderState extends State<CreateOrderPage> {
                         TextFieldWidget(
                           controller: _cubit.reason,
                           hintText: 'Chọn lý do',
+                        ),
+                        8.verticalSpace,
+                        Row(
+                          children: [
+                            Text(
+                              'Số phút vắng',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .text14W400
+                                  .copyWith(color: AppColors.dark3),
+                            ),
+                            Text(
+                              '*',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .text14W400
+                                  .copyWith(color: AppColors.red),
+                            ),
+                          ],
+                        ),
+                        8.verticalSpace,
+                        TextFieldWidget(
+                          controller: _cubit.minutes,
+                          hintText: 'Điền số phút vắng',
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp(r'^[0-9]*$')),
+                          ],
                         ),
                         8.verticalSpace,
                         Row(

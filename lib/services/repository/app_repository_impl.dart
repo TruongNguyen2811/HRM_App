@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:hrm/model/base/base_response.dart';
 import 'package:hrm/model/request/attendance_request.dart';
 import 'package:hrm/model/request/login_request.dart';
 import 'package:hrm/model/response/attendance_response.dart';
 import 'package:hrm/model/response/auth_response.dart';
+import 'package:hrm/model/response/contract_response.dart';
+import 'package:hrm/model/response/department_list_response.dart';
 import 'package:hrm/model/response/employee_info_response.dart';
 import 'package:hrm/model/response/kpi_response.dart';
 import 'package:hrm/model/response/list_booking_room_response.dart';
@@ -94,7 +97,7 @@ class AppRepository extends BaseRepository {
       print('12311111111111 ${response}');
       logger.e(response.error);
 
-      return ApiResult.success(data: response.result);
+      return ApiResult.success(data: response.result ?? ListEmployeeResponse());
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -115,7 +118,7 @@ class AppRepository extends BaseRepository {
       print('12311111111111 ${response}');
       logger.e(response.error);
 
-      return ApiResult.success(data: response.result);
+      return ApiResult.success(data: response.result ?? ListRoomResponse());
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -159,7 +162,7 @@ class AppRepository extends BaseRepository {
       print('12311111111111 ${response}');
       logger.e(response.error);
 
-      return ApiResult.success(data: response.result);
+      return ApiResult.success(data: response.result ?? []);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -168,31 +171,40 @@ class AppRepository extends BaseRepository {
     }
   }
 
-  Future<ApiResult<SuccessMessage>> createLeaveRequest(
-      {required String employee_code,
-      required String time_keeping_code,
-      required String from_date,
-      required String to_date,
-      required String reasons,
-      required String holiday_status_id,
-      required String hours,
-      required String company}) async {
+  Future<ApiResult<SuccessMessage>> createLeaveRequest({
+    required String employee_code,
+    required String time_keeping_code,
+    required String from_date,
+    required String to_date,
+    required String reasons,
+    required String holiday_status_id,
+    required String hours,
+    required String company,
+    required String for_reasons,
+    required String minutes,
+  }) async {
     try {
       print(
           'check send ${employee_code} , ${time_keeping_code}, ${employee_code}, ${from_date}, ${to_date}, ${reasons}, ${holiday_status_id}, ${hours}, ${company}');
-      SuccessMessage response =
+      BaseResponse<SuccessMessage> response =
           await appClient.createLeaveRequest(wrapMapFormData({
         "employee_code": employee_code,
         "time_keeping_code": time_keeping_code,
         "from_date": from_date,
         "to_date": to_date,
-        // "for_reasons": for_reasons,
+        "for_reasons": for_reasons,
         "reasons": reasons,
         "holiday_status_id": holiday_status_id,
         "hours": hours,
         "company": company,
+        "minutes": minutes,
       }));
-      return ApiResult.success(data: response);
+      if (response.result != null) {
+        print(123);
+        return ApiResult.success(data: response.result ?? SuccessMessage());
+      } else {
+        return handleErrorApi(response.error.message);
+      }
     } catch (e) {
       return handleErrorApi(e);
     }
@@ -202,7 +214,7 @@ class AppRepository extends BaseRepository {
       {required AttendanceRequest body}) async {
     try {
       final response = await appClient.changePassWord(body);
-      return ApiResult.success(data: response);
+      return ApiResult.success(data: response.result ?? SuccessMessage());
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -223,7 +235,8 @@ class AppRepository extends BaseRepository {
       print('12311111111111 ${response}');
       logger.e(response.error);
 
-      return ApiResult.success(data: response.result);
+      return ApiResult.success(
+          data: response.result ?? ListBookingRoomResponse());
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -244,7 +257,7 @@ class AppRepository extends BaseRepository {
       print('12311111111111 ${response}');
       logger.e(response.error);
 
-      return ApiResult.success(data: response.result);
+      return ApiResult.success(data: response.result ?? ListLeaveResponse());
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -265,7 +278,50 @@ class AppRepository extends BaseRepository {
       print('12311111111111 ${response}');
       logger.e(response.error);
 
-      return ApiResult.success(data: response.result);
+      return ApiResult.success(
+          data: response.result ?? ListEquipmentResponse());
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<ListContractResponse>> getContractInfo(
+      {required AttendanceRequest body}) async {
+    try {
+      final response = await appClient.getContractInfo(body);
+
+      if (!Utils.isEmpty(response.error)) {
+        print('check error 123');
+        return handleErrorApi('Đã xảy ra lối không mong muôn');
+      }
+      print('12311111111111 ${response}');
+      logger.e(response.error);
+
+      return ApiResult.success(data: response.result ?? ListContractResponse());
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<DepartmentList>> getDepartmentList(
+      {required AttendanceRequest body}) async {
+    try {
+      final response = await appClient.getDepartmentList(body);
+
+      if (!Utils.isEmpty(response.error)) {
+        print('check error 123');
+        return handleErrorApi('Đã xảy ra lối không mong muôn');
+      }
+      print('12311111111111 ${response}');
+      logger.e(response.error);
+
+      return ApiResult.success(data: response.result ?? DepartmentList());
     } catch (e) {
       if (kDebugMode) {
         print(e);

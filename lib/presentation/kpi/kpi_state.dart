@@ -18,3 +18,5 @@ class KPIFailure extends KPIState {
 }
 
 class KPIGetDataSuccess extends KPIState {}
+
+class GetEmployeeSuccess extends KPIState {}

@@ -24,10 +24,15 @@ class _KpiPageState extends State<KpiPage> {
   @override
   void initState() {
     _cubit = KPICubit();
-    _cubit.getKPIReport();
+    getData();
     _refreshController = RefreshController();
     // TODO: implement initState
     super.initState();
+  }
+
+  getData() async {
+    await _cubit.getListEmployee();
+    await _cubit.getKPIReport();
   }
 
   @override

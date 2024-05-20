@@ -7,6 +7,7 @@ import 'package:hrm/injection_container.dart';
 import 'package:hrm/presentation/account/account_cubit.dart';
 import 'package:hrm/presentation/account/account_state.dart';
 import 'package:hrm/presentation/account/change_pass/change_password_page.dart';
+import 'package:hrm/presentation/account/contract_info/contract_page.dart';
 import 'package:hrm/presentation/account/widget/menu_account_widget.dart';
 import 'package:hrm/presentation/authentication/authentication_cubit.dart';
 import 'package:hrm/utils/custom_theme.dart';
@@ -83,7 +84,9 @@ class _AccountPageState extends State<AccountPage> {
 
   Widget _profileWidget(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        NavigationUtils.rootNavigatePage(context, ContractPage());
+      },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w),
         padding: EdgeInsets.all(16.w),

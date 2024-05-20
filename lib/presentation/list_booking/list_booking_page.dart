@@ -8,6 +8,7 @@ import 'package:hrm/presentation/list_booking/list_booking_cubit.dart';
 import 'package:hrm/presentation/list_booking/list_booking_state.dart';
 import 'package:hrm/presentation/list_booking/widget/booking_info.dart';
 import 'package:hrm/utils/custom_gradient.dart';
+import 'package:hrm/utils/custom_theme.dart';
 import 'package:hrm/utils/navigation_utils.dart';
 import 'package:hrm/utils/utils.dart';
 import 'package:hrm/widget/button_widget.dart';
@@ -66,22 +67,25 @@ class _ListBookingPageState extends State<ListBookingPage> {
                 _refreshController.refreshCompleted();
               },
               child: SingleChildScrollView(
-                  child: ListView.separated(
-                padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-                itemBuilder: (context, index) {
-                  return BookingInfoWidget(
-                    item: _cubit.listBooking[index],
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: 8.h,
-                  );
-                },
-                itemCount: _cubit.listBooking.length,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-              )),
+                  child: Utils.isEmptyArray(_cubit.listBooking)
+                      ? _emptyWidget()
+                      : ListView.separated(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 12.h, horizontal: 16.w),
+                          itemBuilder: (context, index) {
+                            return BookingInfoWidget(
+                              item: _cubit.listBooking[index],
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: 8.h,
+                            );
+                          },
+                          itemCount: _cubit.listBooking.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                        )),
             ),
           )
         ]),
@@ -109,6 +113,31 @@ class _ListBookingPageState extends State<ListBookingPage> {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _emptyWidget() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          150.verticalSpace,
+          Image.asset(
+            'assets/icon/ic_no_result.png',
+            height: 140.w,
+            width: 140.w,
+          ),
+          16.verticalSpace,
+          Text(
+            'Không tìm thấy kết quả',
+            style: Theme.of(context)
+                .textTheme
+                .text16w500
+                .copyWith(color: AppColors.dark7),
+          ),
+          100.verticalSpace,
+        ],
       ),
     );
   }
