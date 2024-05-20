@@ -35,7 +35,8 @@ class AppClient {
     final AppPreferences pref = getIt<AppPreferences>();
 
     dio = Dio(BaseOptions(
-        baseUrl: 'https://hrm-test.mandalahotel.com.vn/',
+        baseUrl:
+            'https://5f3c-2405-4803-a0f2-4580-78cd-8ee7-4c6b-3ce9.ngrok-free.app/',
         receiveTimeout: 60 * 1000 * 2,
         connectTimeout: 60 * 1000 * 2,
         contentType: "application/json"));

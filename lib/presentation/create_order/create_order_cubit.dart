@@ -97,8 +97,13 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
     response.when(success: (data) {
       try {
         SuccessMessage successMessage = data;
-
-        emit(CreateOrderSuccess());
+        if (!Utils.isEmpty(successMessage.message)) {
+          emit(CreateOrderSuccess());
+        } else {
+          emit(CreateOrderFailure(
+              messageError:
+                  'Đã xảy ra lỗi không mong muốn, Vui lòng kiểm tra lại quỹ phép'));
+        }
       } catch (e) {
         emit(CreateOrderFailure(messageError: 'Đã xảy ra lỗi không mong muốn'));
       }

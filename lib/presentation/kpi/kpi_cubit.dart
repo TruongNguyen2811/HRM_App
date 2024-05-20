@@ -23,7 +23,7 @@ class KPICubit extends Cubit<KPIState> {
   getKPIReport() async {
     emit(KPILoading());
     String filter =
-        '[["date" , "=" , "${DateTime.now().year}-${DateTime.now().month}-1"],["employee_code","=" ,"${employeeChoose?.code ?? ''}"]]';
+        '[["date" , "=" , "${DateTime.now().year}-${DateTime.now().month - 2}-1"],["employee_code","=" ,"${employeeChoose?.code ?? ''}"]]';
     String query = '{*}';
     // AttendanceRequest request = AttendanceRequest(
     //     params: AttendanceModel(args: [

@@ -34,7 +34,7 @@ class TextFieldRangeDateWidget extends StatelessWidget {
           context: context,
           config: CalendarDatePicker2WithActionButtonsConfig(
             firstDate: DateTime(1990),
-            lastDate: DateTime.now(),
+            // lastDate: DateTime.now(),
             currentDate: controller.text != ''
                 ? controller.text.toDateFormat(AppDateFormat.dayMonthYear)
                 : null,

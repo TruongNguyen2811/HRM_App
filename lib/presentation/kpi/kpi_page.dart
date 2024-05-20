@@ -188,18 +188,26 @@ class _KpiPageState extends State<KpiPage> {
                                                     .compensation_status_week_3 ??
                                                 ''),
                                         8.verticalSpace,
-                                        rowTextComponent(
-                                            'Trạng thái tuần 4',
-                                            _cubit.kpiResponse[0]
-                                                    .compensation_status_week_4 ??
-                                                ''),
-                                        8.verticalSpace,
-                                        rowTextComponent(
-                                            'Trạng thái tuần 5',
-                                            _cubit.kpiResponse[0]
-                                                    .compensation_status_week_5
-                                                    .toString() ??
-                                                ''),
+                                        if (_cubit.kpiResponse[0]
+                                                .compensation_status_week_4 !=
+                                            false) ...[
+                                          rowTextComponent(
+                                              'Trạng thái tuần 4',
+                                              _cubit.kpiResponse[0]
+                                                      .compensation_status_week_4 ??
+                                                  ''),
+                                          8.verticalSpace,
+                                        ],
+                                        if (_cubit.kpiResponse[0]
+                                                .compensation_status_week_5 !=
+                                            false) ...[
+                                          rowTextComponent(
+                                              'Trạng thái tuần 5',
+                                              _cubit.kpiResponse[0]
+                                                      .compensation_status_week_5
+                                                      .toString() ??
+                                                  ''),
+                                        ],
                                       ]),
                                 )
                               ],

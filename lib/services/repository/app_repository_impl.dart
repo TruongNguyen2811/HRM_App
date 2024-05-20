@@ -186,7 +186,7 @@ class AppRepository extends BaseRepository {
     try {
       print(
           'check send ${employee_code} , ${time_keeping_code}, ${employee_code}, ${from_date}, ${to_date}, ${reasons}, ${holiday_status_id}, ${hours}, ${company}');
-      BaseResponse<SuccessMessage> response =
+      SuccessMessage response =
           await appClient.createLeaveRequest(wrapMapFormData({
         "employee_code": employee_code,
         "time_keeping_code": time_keeping_code,
@@ -199,12 +199,8 @@ class AppRepository extends BaseRepository {
         "company": company,
         "minutes": minutes,
       }));
-      if (response.result != null) {
-        print(123);
-        return ApiResult.success(data: response.result ?? SuccessMessage());
-      } else {
-        return handleErrorApi(response.error.message);
-      }
+      print(123);
+      return ApiResult.success(data: response);
     } catch (e) {
       return handleErrorApi(e);
     }
